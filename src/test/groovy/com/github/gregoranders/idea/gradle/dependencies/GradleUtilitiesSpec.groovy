@@ -36,21 +36,22 @@ import java.nio.file.Path
 @Subject(GradleUtilities)
 @See([
     'https://gradle.org',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2'
+    '2', '6'
 ])
 class GradleUtilitiesSpec extends Specification {
 
     @Subject
     GradleUtilities testSubject = new GradleUtilities()
 
-    def 'should return an empty list of dependencies of a simple project'() {
-        given: 'a path to a simple project'
+    def 'should return an empty list of dependencies of a simple project with no dependencies'() {
+        given: 'a path to a simple project with no dependencies'
             def path = getProjectPath('simple-no-dependencies')
         when: 'the test subject invokes getDependencies with this path'
             def dependencies = testSubject.getDependencies(path)
-        then: 'a list with zero dependencies is returned'
+        then: 'a list with zero dependencies should be returned'
             dependencies.size() == 0
         and: 'no exceptions are thrown'
             noExceptionThrown()
