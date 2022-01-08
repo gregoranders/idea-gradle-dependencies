@@ -1,0 +1,5 @@
+initscript {
+  dependencies {
+    classpath files('GRADLE_DEPENDENCIES_PLUGIN_PATH')
+  }
+}
