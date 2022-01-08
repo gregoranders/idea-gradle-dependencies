@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=59a6a4131af03a362b699e561d9810109244f1db">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=d7f3db76776317f8589c4d386911a4881d494cfc">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.GradleUtilitiesSpec" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.GradleUtilitiesSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"description":"Specification run results","headline":"com.github.gregoranders.idea.gradle.dependencies.GradleUtilitiesSpec","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.GradleUtilitiesSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.GradleUtilitiesSpec","description":"Specification run results","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -85,7 +85,7 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.089 seconds</td>
+      <td>1.966 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -99,6 +99,7 @@
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/2">#2</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/6">#6</a></li>
 </ul>
 
@@ -119,7 +120,7 @@
 <h1 id="should-return-an-empty-list-of-dependencies-of-a-simple-project-with-no-dependencies">should return an empty list of dependencies of a simple project with no dependencies</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.043 seconds</p>
+Time: 1.925 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a path to a simple project with no dependencies</li>
@@ -132,14 +133,16 @@ Time: 0.043 seconds</p>
   <li><strong>When</strong> the test subject invokes getDependencies with this path</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">getDependencies</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">project</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">getDependencies</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
 </code></pre></div></div>
 
 <ul>
-  <li><strong>Then</strong> a list with zero dependencies should be returned</li>
+  <li><strong>Then</strong> the project should have no dependencies in all configurations</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="o">})</span>
 </code></pre></div></div>
 
 <ul>

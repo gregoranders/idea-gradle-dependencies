@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=d7f3db76776317f8589c4d386911a4881d494cfc">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/idea-gradle-dependencies/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec | JetBrains IntelliJ Gradle Dependencies Plugin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec" />
+<meta name="author" content="Gregor Anders" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Specification run results" />
+<meta property="og:description" content="Specification run results" />
+<link rel="canonical" href="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec.html" />
+<meta property="og:url" content="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec.html" />
+<meta property="og:site_name" content="JetBrains IntelliJ Gradle Dependencies Plugin" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.utilities.InitScriptSpec","description":"Specification run results","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/idea-gradle-dependencies/">
+          <h1>JetBrains IntelliJ Gradle Dependencies Plugin</h1>
+        </a>
+        <h2>Specification run results</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/gregoranders/idea-gradle-dependencies" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="init-script">Init script</h1>
+<blockquote>
+  <h1 id="as-a-user-i-would-like-to-be-able-inject-a-script-into-a-gradle">As a user I would like to be able inject a <a href="https://docs.gradle.org/current/userguide/init_scripts.html">Script</a> into a <a href="https://gradle.org">Gradle</a>.</h1>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Total Runs</th>
+      <th>Success Rate</th>
+      <th>Failures</th>
+      <th>Errors</th>
+      <th>Skipped</th>
+      <th>Total time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4</td>
+      <td>100.0%</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.023 seconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="testsubject">TestSubject:</h4>
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/utilities/InitScript.java">com.github.gregoranders.idea.gradle.dependencies.utilities.InitScript</a></li>
+</ul>
+
+<h4 id="issues">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
+</ul>
+
+<h4 id="see">See:</h4>
+
+<ul>
+  <li><a href="https://gradle.org">https://gradle.org</a></li>
+  <li><a href="https://docs.gradle.org/current/userguide/init_scripts.html">https://docs.gradle.org/current/userguide/init_scripts.html</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/utilities/InitScript.java">com.github.gregoranders.idea.gradle.dependencies.utilities.InitScript</a></li>
+</ul>
+
+<h2 id="features">Features</h2>
+<ul>
+  <li><a href="#should-return-temporary-init-script-path-with-replaced-plugin-path">should return temporary init script path with replaced plugin path</a></li>
+  <li><a href="#should-remove-temporary-init-script-when-close-is-invoked">should remove temporary init script when close is invoked</a></li>
+  <li><a href="#should-not-create-a-temporary-init-script">should not create a temporary init script</a></li>
+  <li><a href="#should-throw-exception-when-not-existent-init-script-is-provided">should throw exception when not existent init script is provided</a></li>
+</ul>
+
+<hr />
+
+<h1 id="should-return-temporary-init-script-path-with-replaced-plugin-path">should return temporary init script path with replaced plugin path</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.010 seconds</p>
+
+<ul>
+  <li><strong>Given</strong> a valid init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">initScript</span> <span class="o">=</span> <span class="s1">'/gradle-dependencies-plugin.gradle'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the unit under test is provided this init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Subject</span>
+<span class="n">InitScript</span> <span class="n">testSubject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitScript</span><span class="o">(</span><span class="n">initScript</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> a temporary init script is requested</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">path</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> the script exists</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">path</span><span class="o">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it contains the replaced path to the plugin</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">readAllLines</span><span class="o">(</span><span class="n">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">path</span><span class="o">))</span>
+<span class="n">checkPluginPath</span><span class="o">(</span><span class="n">lines</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> no exceptions are thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noExceptionThrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+<h1 id="should-remove-temporary-init-script-when-close-is-invoked">should remove temporary init script when close is invoked</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.004 seconds</p>
+
+<ul>
+  <li><strong>Given</strong> a valid init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">initScript</span> <span class="o">=</span> <span class="s1">'/gradle-dependencies-plugin.gradle'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the unit under test is provided this init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Subject</span>
+<span class="n">InitScript</span> <span class="n">testSubject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitScript</span><span class="o">(</span><span class="n">initScript</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> a temporary init script is requested</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">path</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the script exists</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">path</span><span class="o">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> close is invoked on the testSubject</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">close</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> the temporary init script should be deleted</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">!</span><span class="n">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">path</span><span class="o">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> no exceptions are thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noExceptionThrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+<h1 id="should-not-create-a-temporary-init-script">should not create a temporary init script</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Given</strong> a valid init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">initScript</span> <span class="o">=</span> <span class="s1">'/gradle-dependencies-plugin.gradle'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the unit under test is provided this init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Subject</span>
+<span class="n">InitScript</span> <span class="n">testSubject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitScript</span><span class="o">(</span><span class="n">initScript</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> close is invoked on the testSubject</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">close</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> no exceptions are thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noExceptionThrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+<h1 id="should-throw-exception-when-not-existent-init-script-is-provided">should throw exception when not existent init script is provided</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.001 seconds</p>
+
+<ul>
+  <li><strong>Given</strong> an invalid init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">initScript</span> <span class="o">=</span> <span class="s1">'/test.gradle'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the unit und test provided this init script</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Subject</span>
+<span class="n">InitScript</span> <span class="n">testSubject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InitScript</span><span class="o">(</span><span class="n">initScript</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> a temporary init scrip is requested</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> an exception should be thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NullPointerException</span> <span class="n">exception</span> <span class="o">=</span> <span class="n">thrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the message of the exception should be “Resource not found /test”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exception</span><span class="o">.</span><span class="na">getMessage</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'Resource not found /test.gradle'</span>
+</code></pre></div></div>
+
+
+      </section>
+    </div>
+  </body>
+</html>
