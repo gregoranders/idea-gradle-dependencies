@@ -1,5 +1,11 @@
+//file:noinspection GrUnresolvedAccess
+
 initscript {
   dependencies {
     classpath files('GRADLE_DEPENDENCIES_PLUGIN_PATH')
   }
+}
+
+allprojects {
+  apply plugin: com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesPlugin
 }

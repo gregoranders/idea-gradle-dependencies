@@ -24,17 +24,15 @@
 package com.github.gregoranders.idea.gradle.dependencies;
 
 import com.github.gregoranders.idea.gradle.dependencies.configuration.Configuration;
+import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project;
+import com.github.gregoranders.idea.gradle.dependencies.utilities.InitScript;
+import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.ModelBuilder;
+import org.gradle.tooling.ProjectConnection;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.CodeSource;
-import java.util.List;
-import java.util.Objects;
 
 public final class GradleUtilities {
 
@@ -44,77 +42,28 @@ public final class GradleUtilities {
         configuration = config;
     }
 
-    public List<String> getDependencies(@SuppressWarnings({"java:S1172", "unused"}) final Path path) {
-        return List.of();
+    @SuppressWarnings("UnstableApiUsage")
+    public Project getDependencies(final Path path) throws URISyntaxException, IOException {
+        final GradleConnector connector = getGradleConnector(GradleConnector.newConnector(), path);
+
+        try (ProjectConnection projectConnection = getProjectConnection(connector)) {
+
+            final ModelBuilder<Project> modelBuilder = projectConnection.model(Project.class);
+
+            try (InitScript initScript = new InitScript(configuration.getInitScriptPath())) {
+                modelBuilder.withArguments("--init-script", initScript.getAbsolutePath());
+                return modelBuilder.get();
+            }
+        } finally {
+            connector.disconnect();
+        }
     }
 
-    public Path getTemporaryInitScriptPath() throws URISyntaxException, IOException {
-        return createTemporaryInitScript(getPluginPath(), configuration.getInitScriptPath());
+    private ProjectConnection getProjectConnection(final GradleConnector connector) {
+        return connector.connect();
     }
 
-    private Path createTemporaryInitScript(final Path pluginPath, final String initScriptPath) throws IOException, URISyntaxException {
-        final Path scriptPath = getInitScriptPath(initScriptPath);
-        final Path temporaryScriptPath = createSecureTempFile();
-
-        final List<String> lines = Files.readAllLines(scriptPath, StandardCharsets.UTF_8);
-        final String initScriptContent = getInitScriptContentWithReplacedPluginPath(pluginPath, lines);
-
-        return Files.writeString(temporaryScriptPath, initScriptContent, StandardCharsets.UTF_8);
-    }
-
-    @SuppressWarnings("PMD.LawOfDemeter")
-    private Path createSecureTempFile() throws IOException {
-        final Path path = Files.createTempFile("gradle-dependencies-plugin-init", ".gradle");
-        setFilePermissions(path.toFile());
-        return path;
-    }
-
-    @SuppressWarnings({"java:S899", "ResultOfMethodCallIgnored"})
-    private void setFilePermissions(final File file) {
-        file.setReadable(true, true);
-        file.setWritable(true, true);
-        file.setExecutable(false, true);
-    }
-
-    private String getInitScriptContentWithReplacedPluginPath(final Path pluginPath, final List<String> lines) {
-        final StringBuilder stringBuilder = new StringBuilder();
-        lines.forEach(line -> {
-            stringBuilder.append(line.replace("GRADLE_DEPENDENCIES_PLUGIN_PATH", getAbsolutePathAsString(pluginPath)));
-            stringBuilder.append(System.lineSeparator());
-        });
-
-        return stringBuilder.toString();
-    }
-
-    @SuppressWarnings("PMD.LawOfDemeter")
-    private Path getPluginPath() throws URISyntaxException {
-        final CodeSource codeSource = getClass().getProtectionDomain().getCodeSource();
-        return Path.of(codeSource.getLocation().toURI());
-    }
-
-    private Path getInitScriptPath(final String scriptPath) throws URISyntaxException {
-        final URL resource = getResource(getClass(), scriptPath);
-        Objects.requireNonNull(resource, String.format("Resource not found %s", scriptPath));
-        return getPathFromURL(resource);
-    }
-
-    private URL getResource(final Class<?> clazz, final String path) {
-        return clazz.getResource(path);
-    }
-
-    private Path getPathFromURL(final URL url) throws URISyntaxException {
-        return Path.of(url.toURI());
-    }
-
-    private String getAbsolutePathAsString(final Path path) {
-        return getPathAsString(getAbsolutePath(path));
-    }
-
-    private String getPathAsString(final Path path) {
-        return path.toString();
-    }
-
-    private Path getAbsolutePath(final Path path) {
-        return path.toAbsolutePath();
+    private GradleConnector getGradleConnector(final GradleConnector connector, final Path path) {
+        return connector.forProjectDirectory(path.toFile());
     }
 }
