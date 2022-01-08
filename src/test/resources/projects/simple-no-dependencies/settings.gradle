@@ -1,0 +1,3 @@
+//file:noinspection GrPackage
+
+rootProject.name = 'simple-no-dependencies'
