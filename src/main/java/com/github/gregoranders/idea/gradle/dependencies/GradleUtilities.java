@@ -25,6 +25,7 @@ package com.github.gregoranders.idea.gradle.dependencies;
 
 import com.github.gregoranders.idea.gradle.dependencies.configuration.Configuration;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -52,14 +53,27 @@ public final class GradleUtilities {
     }
 
     private Path createTemporaryInitScript(final Path pluginPath, final String initScriptPath) throws IOException, URISyntaxException {
-
         final Path scriptPath = getInitScriptPath(initScriptPath);
-        final Path temporaryScriptPath = Files.createTempFile("gradle-dependencies-plugin-init", ".gradle");
+        final Path temporaryScriptPath = createSecureTempFile();
 
         final List<String> lines = Files.readAllLines(scriptPath, StandardCharsets.UTF_8);
         final String initScriptContent = getInitScriptContentWithReplacedPluginPath(pluginPath, lines);
 
         return Files.writeString(temporaryScriptPath, initScriptContent, StandardCharsets.UTF_8);
+    }
+
+    @SuppressWarnings("PMD.LawOfDemeter")
+    private Path createSecureTempFile() throws IOException {
+        final Path path = Files.createTempFile("gradle-dependencies-plugin-init", ".gradle");
+        setFilePermissions(path.toFile());
+        return path;
+    }
+
+    @SuppressWarnings({"java:S899", "ResultOfMethodCallIgnored"})
+    private void setFilePermissions(final File file) {
+        file.setReadable(true, true);
+        file.setWritable(true, true);
+        file.setExecutable(false, true);
     }
 
     private String getInitScriptContentWithReplacedPluginPath(final Path pluginPath, final List<String> lines) {
