@@ -59,7 +59,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: --info --stacktrace check
-      - name: Execute check
+      - name: Execute build
         uses: gradle/gradle-build-action@v2
         with:
           arguments: --info --stacktrace build
@@ -84,8 +84,7 @@ jobs:
           sudo apt update
           sudo apt install bundler
           cp build/reports/spock/* docs/_gh-pages
-          cp docs/gh-pages/Gemfile docs/_gh-pages
-          cp docs/gh-pages/_config.yml docs/_gh-pages
+          cp docs/gh-pages/* docs/_gh-pages
           cd docs/_gh-pages
           bundle update
           bundle exec github-pages build

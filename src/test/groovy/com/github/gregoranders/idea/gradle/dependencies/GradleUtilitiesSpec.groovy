@@ -23,6 +23,8 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies
 
+import com.github.gregoranders.idea.gradle.dependencies.configuration.Configuration
+import io.github.joke.spockmockable.Mockable
 import spock.lang.*
 
 import java.nio.file.Path
@@ -39,20 +41,25 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2', '6'
+    '2', '5', '6'
 ])
+@Mockable(Configuration)
 class GradleUtilitiesSpec extends Specification {
 
+    final Configuration configuration = new Configuration()
+
     @Subject
-    GradleUtilities testSubject = new GradleUtilities()
+    GradleUtilities testSubject = new GradleUtilities(configuration)
 
     def 'should return an empty list of dependencies of a simple project with no dependencies'() {
         given: 'a path to a simple project with no dependencies'
             def path = getProjectPath('simple-no-dependencies')
         when: 'the test subject invokes getDependencies with this path'
-            def dependencies = testSubject.getDependencies(path)
-        then: 'a list with zero dependencies should be returned'
-            dependencies.size() == 0
+            def project = testSubject.getDependencies(path)
+        then: 'the project should have no dependencies in all configurations'
+            project.configurations().forEach(configuration -> {
+                assert configuration.dependencies().size() == 0
+            })
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }

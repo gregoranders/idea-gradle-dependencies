@@ -59,7 +59,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
         with:
           arguments: --info --stacktrace check
-      - name: Execute check
+      - name: Execute build
         uses: gradle/gradle-build-action@v2
         with:
           arguments: --info --stacktrace build

@@ -21,6 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module com.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
+package com.github.gregoranders.idea.gradle.dependencies.tooling.model.api;
+
+import java.io.Serializable;
+import java.util.List;
+
+public interface Configuration extends Serializable {
+    String name();
+
+    List<Dependency> dependencies();
 }

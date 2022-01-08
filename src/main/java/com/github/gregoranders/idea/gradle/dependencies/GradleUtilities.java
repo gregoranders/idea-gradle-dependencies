@@ -23,12 +23,47 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies;
 
+import com.github.gregoranders.idea.gradle.dependencies.configuration.Configuration;
+import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project;
+import com.github.gregoranders.idea.gradle.dependencies.utilities.InitScript;
+import org.gradle.tooling.GradleConnector;
+import org.gradle.tooling.ModelBuilder;
+import org.gradle.tooling.ProjectConnection;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.util.List;
 
 public final class GradleUtilities {
 
-    public List<String> getDependencies(@SuppressWarnings({"java:S1172", "unused"}) final Path path) {
-        return List.of();
+    private final Configuration configuration;
+
+    public GradleUtilities(final Configuration config) {
+        configuration = config;
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    public Project getDependencies(final Path path) throws URISyntaxException, IOException {
+        final GradleConnector connector = getGradleConnector(GradleConnector.newConnector(), path);
+
+        try (ProjectConnection projectConnection = getProjectConnection(connector)) {
+
+            final ModelBuilder<Project> modelBuilder = projectConnection.model(Project.class);
+
+            try (InitScript initScript = new InitScript(configuration.getInitScriptPath())) {
+                modelBuilder.withArguments("--init-script", initScript.getAbsolutePath());
+                return modelBuilder.get();
+            }
+        } finally {
+            connector.disconnect();
+        }
+    }
+
+    private ProjectConnection getProjectConnection(final GradleConnector connector) {
+        return connector.connect();
+    }
+
+    private GradleConnector getGradleConnector(final GradleConnector connector, final Path path) {
+        return connector.forProjectDirectory(path.toFile());
     }
 }

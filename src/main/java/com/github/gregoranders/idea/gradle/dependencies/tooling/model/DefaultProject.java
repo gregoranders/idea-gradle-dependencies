@@ -21,6 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module com.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
+package com.github.gregoranders.idea.gradle.dependencies.tooling.model;
+
+import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration;
+import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project;
+
+import java.util.List;
+
+public record DefaultProject(String name,
+                             String description,
+                             String version,
+                             String path,
+                             List<Configuration> configurations) implements Project {
 }

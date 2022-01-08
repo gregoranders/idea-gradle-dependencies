@@ -21,6 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module com.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
+package com.github.gregoranders.idea.gradle.dependencies.configuration;
+
+public final class Configuration {
+
+    public static final String DEFAULT_INIT_SCRIPT = "/gradle-dependencies-plugin.gradle";
+
+    public String getInitScriptPath() {
+        return DEFAULT_INIT_SCRIPT;
+    }
 }

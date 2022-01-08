@@ -21,6 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module com.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
+package com.github.gregoranders.idea.gradle.dependencies.tooling;
+
+import org.gradle.api.NonNullApi;
+import org.gradle.api.Plugin;
+import org.gradle.api.Project;
+import org.gradle.tooling.provider.model.ToolingModelBuilderRegistry;
+
+import javax.inject.Inject;
+
+@NonNullApi
+public final class DependenciesPlugin implements Plugin<Project> {
+
+    private final ToolingModelBuilderRegistry toolingModelBuilderRegistry;
+
+    @Inject
+    public DependenciesPlugin(final ToolingModelBuilderRegistry registry) {
+        toolingModelBuilderRegistry = registry;
+    }
+
+    @Override
+    public void apply(final Project project) {
+        toolingModelBuilderRegistry.register(new DependenciesModelBuilder());
+    }
 }
