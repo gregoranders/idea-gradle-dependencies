@@ -108,6 +108,7 @@ dependencies {
       [group: 'org.spockframework', name: 'spock-bom', version: property('spockVersion')]
     ),
     [group: 'org.spockframework', name: 'spock-core'],
+    [group: 'io.github.joke', name: 'spock-mockable', version: property('spockMockableVersion')],
   )
 
   testImplementation(
