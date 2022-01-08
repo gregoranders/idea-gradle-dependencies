@@ -52,7 +52,11 @@ if (testSubject) {
         if ( feature.attachments.size > 0 ) {
             out << '\n#### ' << 'See:' << '\n\n'
             feature.attachments.each { value ->
-                out << '* [' << value.name.replaceAll('.*main\\/java\\/', '').replaceAll('\\/', '.').replaceAll('\\.java$', '') << '](' << value.url << ')\n'
+                if (value.name.contains('src/main')) {
+                  out << '* [' << value.name.replaceAll('.*main\\/java\\/', '').replaceAll('\\/', '.').replaceAll('\\.java$', '') << '](' << value.url << ')\n'
+                } else {
+                  out << '* [' << value.name << '](' << value.url << ')\n'
+                }
             } 
         }
     }
