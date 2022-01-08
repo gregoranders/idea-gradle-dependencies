@@ -83,7 +83,7 @@ jobs:
           mkdir -p docs/_gh-pages
           sudo apt update
           sudo apt install bundler
-          cp ./impl/build/reports/spock/* docs/_gh-pages
+          cp build/reports/spock/* docs/_gh-pages
           cp docs/gh-pages/Gemfile docs/_gh-pages
           cp docs/gh-pages/_config.yml docs/_gh-pages
           cd docs/_gh-pages
