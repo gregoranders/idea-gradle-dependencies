@@ -35,6 +35,7 @@ import org.gradle.api.artifacts.DependencySet;
 import org.gradle.tooling.provider.model.ToolingModelBuilder;
 
 import java.util.List;
+import java.util.Set;
 
 @NonNullApi
 public final class DependenciesModelBuilder implements ToolingModelBuilder {
@@ -46,14 +47,26 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
 
     @Override
     public Object buildAll(final String modelName, final Project project) {
-        final ConfigurationContainer configurations = project.getConfigurations();
-
-        return new DefaultProject(project.getName(), project.getDescription(), getVersion(project.getVersion()),
-            project.getPath(), mapConfigurations(configurations));
+        return mapProject(project);
     }
 
     private String getVersion(final Object projectVersion) {
         return projectVersion.toString();
+    }
+
+    private com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project mapProject(final Project project) {
+        final ConfigurationContainer configurations = project.getConfigurations();
+
+        return new DefaultProject(project.getName(), project.getDescription(), getVersion(project.getVersion()),
+            project.getPath(), mapConfigurations(configurations), mapSubProjects(project.getSubprojects()));
+    }
+
+    @SuppressWarnings("PMD.LawOfDemeter")
+    private List<com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project> mapSubProjects(final Set<Project> projects) {
+        return projects
+            .stream()
+            .map(this::mapProject)
+            .toList();
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
