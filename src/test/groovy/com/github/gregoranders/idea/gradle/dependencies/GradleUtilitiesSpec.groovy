@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2', '5', '6', '14'
+    '2', '5', '6', '14', '17'
 ])
 @Mockable(Configuration)
 class GradleUtilitiesSpec extends Specification {
@@ -98,6 +98,33 @@ class GradleUtilitiesSpec extends Specification {
                     assertDependency(configuration.dependencies().get(1), 'ch.qos.logback', 'logback-classic', '1.2.9')
                 }
             })
+        and: 'no exceptions are thrown'
+            noExceptionThrown()
+    }
+
+    def 'should return a multi project with no dependencies'() {
+        given: 'a path to a multi project with no dependencies'
+            def path = getProjectPath('multi-no-dependencies')
+        when: 'the test subject invokes getDependencies with this path'
+            def project = testSubject.getDependencies(path)
+        then: 'the name of the project should be "multi-no-dependencies"'
+            project.name() == 'multi-no-dependencies'
+        and: 'the version of the project should be "0.0.1"'
+            project.version() == '0.0.1'
+        and: 'the description of the project should be "Multi project no dependencies"'
+            project.description() == 'Multi project no dependencies'
+        and: 'the project should have no dependencies in all configurations'
+            project.configurations().forEach(configuration -> {
+                assert configuration.dependencies().size() == 0
+            })
+        and: 'the project should have 3 sub projects'
+            project.subProjects().size() == 3
+        and: 'the first sub project should be named "api"'
+            project.subProjects().get(0).name() == 'api'
+        and: 'the second sub project should be named "impl"'
+            project.subProjects().get(1).name() == 'impl'
+        and: 'the third sub project should be named "test"'
+            project.subProjects().get(2).name() == 'test'
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }

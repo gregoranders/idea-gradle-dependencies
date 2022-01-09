@@ -47,7 +47,7 @@ import java.util.stream.Stream
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/DependenciesModelBuilder.java'
 ])
 @Issue([
-    '5'
+    '5', '17'
 ])
 class DependenciesModelBuilderSpec extends Specification {
 
@@ -92,6 +92,7 @@ class DependenciesModelBuilderSpec extends Specification {
                 1 * mockedProject.getDescription() >> 'testProjectDescription'
                 1 * mockedProject.getVersion() >> 'testProjectVersion'
                 1 * mockedProject.getPath() >> 'testProjectPath'
+                1 * mockedProject.getSubprojects() >> Set.of()
             }
         and: 'a project model should be returned'
             project instanceof com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project

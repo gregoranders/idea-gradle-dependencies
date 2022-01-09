@@ -33,7 +33,8 @@ public record DefaultProject(String name,
                              String description,
                              String version,
                              String path,
-                             List<Configuration> configurations) implements Project {
+                             List<Configuration> configurations,
+                             List<Project> subProjects) implements Project {
     @Serial
     private static final long serialVersionUID = -1L;
 }

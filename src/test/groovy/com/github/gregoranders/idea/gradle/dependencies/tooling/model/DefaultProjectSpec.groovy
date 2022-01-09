@@ -43,7 +43,7 @@ import spock.lang.*
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultProject.java'
 ])
 @Issue([
-    '5'
+    '5', '17'
 ])
 class DefaultProjectSpec extends Specification {
 
@@ -65,10 +65,12 @@ class DefaultProjectSpec extends Specification {
 
     Dependency dependency = new DefaultDependency(dependencyGroup, dependencyName, dependencyVersion)
 
-    @Subject
     Configuration configuration = new DefaultConfiguration(configurationName, List.of(dependency))
 
-    Project testSubject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, List.of(configuration))
+    Project subProject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, List.of(configuration), List.of())
+
+    @Subject
+    Project testSubject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, List.of(configuration), List.of(subProject))
 
     def 'should return expected project name'() {
         expect: 'name to equal "testProjectName"'
@@ -98,5 +100,11 @@ class DefaultProjectSpec extends Specification {
     def 'should contain expected configuration'() {
         expect: 'should equal provided configuration'
             testSubject.configurations().get(0) == configuration
+    }
+
+    @Issue('17')
+    def 'should contain expected sub project'() {
+        expect: 'should equal sub project'
+            testSubject.subProjects().get(0) == subProject
     }
 }

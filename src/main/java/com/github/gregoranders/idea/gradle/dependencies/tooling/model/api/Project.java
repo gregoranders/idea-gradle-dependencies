@@ -36,4 +36,6 @@ public interface Project extends Serializable {
     String path();
 
     List<Configuration> configurations();
+
+    List<Project> subProjects();
 }
