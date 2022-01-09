@@ -22,6 +22,11 @@ repositories {
   mavenLocal()
 }
 
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
 idea {
   module {
     downloadJavadoc = true
@@ -52,10 +57,6 @@ jar {
   }
 }
 
-javadoc {
-  options.addStringOption('Xdoclint:none', '-quiet')
-}
-
 test {
   moduleOptions {
     runOnClasspath = true
@@ -82,8 +83,16 @@ project.modularity.patchModule('gradle-api', "javaparser-core-${property('javapa
 
 dependencies {
 
+  annotationProcessor(
+    [group: 'org.immutables', name: 'value', version: property('immutablesVersion')]
+  )
+
   implementation(
     gradleApi(),
+
+    [group: 'org.immutables', name: 'value', version: property('immutablesVersion')],
+    [group: 'org.immutables', name: 'serial', version: property('immutablesVersion')],
+    [group: 'org.immutables', name: 'builder', version: property('immutablesVersion')],
   )
 
   testImplementation(

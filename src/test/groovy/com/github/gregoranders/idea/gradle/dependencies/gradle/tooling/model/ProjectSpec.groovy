@@ -21,12 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.*
 import spock.lang.*
 
 @Narrative('''
@@ -35,18 +32,17 @@ import spock.lang.*
 [gradle-url]: https://gradle.org
 [model-url]: https://github.com/bmuschko/tooling-api-custom-model
 ''')
-@Subject([DefaultProject, Project])
+@Subject([Project])
 @See([
     'https://gradle.org',
     'https://github.com/bmuschko/tooling-api-custom-model',
     'https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Project.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/DefaultProject.java'
 ])
 @Issue([
-    '5', '17', '22', '24'
+    '5', '17', '22', '24', '30'
 ])
-class DefaultProjectSpec extends Specification {
+class ProjectSpec extends Specification {
 
     final String dependencyGroup = 'testGroup'
 
@@ -66,14 +62,14 @@ class DefaultProjectSpec extends Specification {
 
     final String projectPath = 'testProjectPath'
 
-    Dependency dependency = new DefaultDependency(dependencyGroup, dependencyName, dependencyVersion)
+    Dependency dependency = ImmutableDependency.of(dependencyGroup, dependencyName, dependencyVersion)
 
-    Configuration configuration = new DefaultConfiguration(configurationName, Set.of(dependency))
+    Configuration configuration = ImmutableConfiguration.of(configurationName, Set.of(dependency))
 
-    Project subProject = new DefaultProject(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of())
+    Project subProject = ImmutableProject.of(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of())
 
     @Subject
-    Project testSubject = new DefaultProject(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of(subProject))
+    Project testSubject = ImmutableProject.of(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of(subProject))
 
     @Issue('24')
     def 'should return expected project group'() {

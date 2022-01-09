@@ -23,11 +23,8 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.gradle;
 
-import java.io.Serial;
-
 public final class GradleUtilitiesException extends RuntimeException {
 
-    @Serial
     private static final long serialVersionUID = -1L;
 
     public GradleUtilitiesException(final Exception exception) {

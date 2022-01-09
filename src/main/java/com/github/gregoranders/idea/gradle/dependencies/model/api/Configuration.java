@@ -23,10 +23,16 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.model.api;
 
+import org.immutables.value.Value;
+
 import java.util.Set;
 
+@Value.Immutable
 public interface Configuration {
+
+    @Value.Parameter(order = 1)
     String name();
 
+    @Value.Parameter(order = 1)
     Set<Dependency> dependencies();
 }
