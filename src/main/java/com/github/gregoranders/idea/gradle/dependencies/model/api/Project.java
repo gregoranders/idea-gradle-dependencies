@@ -28,6 +28,7 @@ import org.immutables.value.Value;
 import javax.annotation.Nullable;
 import java.util.Set;
 
+@SuppressWarnings("common-java:DuplicatedBlocks")
 @Value.Immutable
 public interface Project {
 

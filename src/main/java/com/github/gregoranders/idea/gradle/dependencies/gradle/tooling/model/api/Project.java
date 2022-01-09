@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Set;
 
+@SuppressWarnings("common-java:DuplicatedBlocks")
 @Value.Immutable
 public interface Project extends Serializable {
 
