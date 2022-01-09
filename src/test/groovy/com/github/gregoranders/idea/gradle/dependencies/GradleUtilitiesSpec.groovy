@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2', '5', '6'
+    '2', '5', '6', '14'
 ])
 @Mockable(Configuration)
 class GradleUtilitiesSpec extends Specification {
