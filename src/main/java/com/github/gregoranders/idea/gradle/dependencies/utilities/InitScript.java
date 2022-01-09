@@ -59,7 +59,7 @@ public final class InitScript implements AutoCloseable {
 
     public String getAbsolutePath() throws URISyntaxException, IOException {
         final Path path = getTemporaryInitScriptPath();
-        return FilenameUtils.separatorsToUnix(getAbsolutePathAsString(path));
+        return getAbsolutePathAsString(path);
     }
 
     private Path getTemporaryInitScriptPath() throws URISyntaxException, IOException {
@@ -93,7 +93,7 @@ public final class InitScript implements AutoCloseable {
     private String getInitScriptContentWithReplacedPluginPath(final Path pluginPath, final List<String> lines) {
         final StringBuilder stringBuilder = new StringBuilder();
         lines.forEach(line -> {
-            stringBuilder.append(line.replace("GRADLE_DEPENDENCIES_PLUGIN_PATH", getAbsolutePathAsString(pluginPath)));
+            stringBuilder.append(line.replace("GRADLE_DEPENDENCIES_PLUGIN_PATH", FilenameUtils.separatorsToUnix(getAbsolutePathAsString(pluginPath))));
             stringBuilder.append(System.lineSeparator());
         });
 
