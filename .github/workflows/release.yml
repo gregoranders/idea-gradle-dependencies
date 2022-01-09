@@ -14,7 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ ubuntu-latest, macOS-latest, windows-latest ]
         java: [ '17.0.1' ]
       fail-fast: false
     name: ${{ matrix.os }} JDK ${{ matrix.java }}
@@ -34,6 +34,7 @@ jobs:
       - name: Echo JAVA version
         run: java --version
       - name: Cache SonarCloud packages
+        if: matrix.os == 'ubuntu-latest'
         uses: actions/cache@v1
         with:
           path: ~/.sonar/cache
@@ -64,6 +65,7 @@ jobs:
         with:
           arguments: --info --stacktrace build
       - name: Sonarcube analyze
+        if: matrix.os == 'ubuntu-latest'
         uses: gradle/gradle-build-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,6 +73,7 @@ jobs:
         with:
           arguments: --info --stacktrace sonarqube
       - name: Publish package
+        if: matrix.os == 'ubuntu-latest'
         uses: gradle/gradle-build-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
