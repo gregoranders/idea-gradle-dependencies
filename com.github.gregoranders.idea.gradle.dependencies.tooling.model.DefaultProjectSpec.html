@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=b7ac6f6b4c4899958c08a308c69bd5aae00aff0b">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=fff7a2b2d5d760fe729e3e95500ea8462d61ad35">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -79,12 +79,12 @@
   </thead>
   <tbody>
     <tr>
-      <td>6</td>
+      <td>7</td>
       <td>100.0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.023 seconds</td>
+      <td>0.018 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -99,6 +99,8 @@
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
 </ul>
 
 <h4 id="see">See:</h4>
@@ -116,8 +118,9 @@
   <li><a href="#should-return-expected-project-description">should return expected project description</a></li>
   <li><a href="#should-return-expected-project-version">should return expected project version</a></li>
   <li><a href="#should-return-expected-project-path">should return expected project path</a></li>
-  <li><a href="#should-return-a-list-with-one-configuration">should return a list with one configuration</a></li>
+  <li><a href="#should-return-a-set-with-one-configuration">should return a set with one configuration</a></li>
   <li><a href="#should-contain-expected-configuration">should contain expected configuration</a></li>
+  <li><a href="#should-contain-expected-sub-project">should contain expected sub project</a></li>
 </ul>
 
 <hr />
@@ -170,19 +173,31 @@ Time: 0</p>
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">path</span><span class="o">()</span> <span class="o">==</span> <span class="n">projectPath</span>
 </code></pre></div></div>
 
-<h1 id="should-return-a-list-with-one-configuration">should return a list with one configuration</h1>
+<h1 id="should-return-a-set-with-one-configuration">should return a set with one configuration</h1>
+
+<h4 id="issues-1">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+</ul>
 
 <p>Result: <strong>PASS</strong>
 Time: 0</p>
 
 <ul>
-  <li><strong>Expect</strong> list of configurations should have one element</li>
+  <li><strong>Expect</strong> set of configurations should have one element</li>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div></div>
 
 <h1 id="should-contain-expected-configuration">should contain expected configuration</h1>
+
+<h4 id="issues-2">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+</ul>
 
 <p>Result: <strong>PASS</strong>
 Time: 0</p>
@@ -191,7 +206,26 @@ Time: 0</p>
   <li><strong>Expect</strong> should equal provided configuration</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="n">configuration</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">configuration</span>
+</code></pre></div></div>
+
+<h1 id="should-contain-expected-sub-project">should contain expected sub project</h1>
+
+<h4 id="issues-3">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+</ul>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Expect</strong> should equal sub project</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">subProject</span>
 </code></pre></div></div>
 
 

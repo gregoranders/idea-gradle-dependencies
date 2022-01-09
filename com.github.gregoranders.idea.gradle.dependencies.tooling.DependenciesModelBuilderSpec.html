@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=b7ac6f6b4c4899958c08a308c69bd5aae00aff0b">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=fff7a2b2d5d760fe729e3e95500ea8462d61ad35">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -85,7 +85,7 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.165 seconds</td>
+      <td>0.178 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -99,6 +99,8 @@
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
 </ul>
 
 <h4 id="see">See:</h4>
@@ -228,7 +230,7 @@ Time: 0</p>
 <h1 id="should-return-project-model">should return project model</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.105 seconds</p>
+Time: 0.112 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a mocked Project</li>
@@ -289,6 +291,7 @@ Time: 0.105 seconds</p>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectDescription'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectVersion'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getPath</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectPath'</span>
+    <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getSubprojects</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">()</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -338,35 +341,35 @@ Time: 0.105 seconds</p>
   <li><strong>And</strong> this configuration should have the name “testConfigurationName”</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testConfigurationName'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testConfigurationName'</span>
 </code></pre></div></div>
 
 <ul>
   <li><strong>And</strong> it should contain one dependency</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
 </code></pre></div></div>
 
 <ul>
   <li><strong>And</strong> this dependency should have the name of “testDependencyName”</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">dependencies</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyName'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyName'</span>
 </code></pre></div></div>
 
 <ul>
   <li><strong>And</strong> it should have the group of “testDependencyGroup”</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">dependencies</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyGroup'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyGroup'</span>
 </code></pre></div></div>
 
 <ul>
   <li><strong>And</strong> it should have the version of “testDependencyVersion”</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">dependencies</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyVersion'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testDependencyVersion'</span>
 </code></pre></div></div>
 
 <ul>
