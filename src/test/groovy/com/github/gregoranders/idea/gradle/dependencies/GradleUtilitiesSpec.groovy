@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2', '5', '6', '14', '17', '22'
+    '2', '5', '6', '14', '17', '22', '24'
 ])
 @Mockable(Configuration)
 class GradleUtilitiesSpec extends Specification {
@@ -58,7 +58,9 @@ class GradleUtilitiesSpec extends Specification {
             def path = getProjectPath('simple-no-dependencies')
         when: 'the test subject invokes getDependencies with this path'
             def project = testSubject.getDependencies(path)
-        then: 'the name of the project should be "simple-no-dependencies"'
+        then: 'the group of the project should be "com.github.gregoranders"'
+            project.group() == 'com.github.gregoranders'
+        and: 'the name of the project should be "simple-no-dependencies"'
             project.name() == 'simple-no-dependencies'
         and: 'the version of the project should be "0.0.1"'
             project.version() == '0.0.1'
@@ -77,7 +79,9 @@ class GradleUtilitiesSpec extends Specification {
             def path = getProjectPath('simple-with-dependencies')
         when: 'the test subject invokes getDependencies with this path'
             def project = testSubject.getDependencies(path)
-        then: 'the name of the project should be "simple-no-dependencies"'
+        then: 'the group of the project should be "com.github.gregoranders"'
+            project.group() == 'com.github.gregoranders'
+        and: 'the name of the project should be "simple-no-dependencies"'
             project.name() == 'simple-with-dependencies'
         and: 'the version of the project should be "0.0.2"'
             project.version() == '0.0.2'
@@ -107,7 +111,9 @@ class GradleUtilitiesSpec extends Specification {
             def path = getProjectPath('multi-no-dependencies')
         when: 'the test subject invokes getDependencies with this path'
             def project = testSubject.getDependencies(path)
-        then: 'the name of the project should be "multi-no-dependencies"'
+        then: 'the group of the project should be "com.github.gregoranders"'
+            project.group() == 'com.github.gregoranders'
+        and: 'the name of the project should be "multi-no-dependencies"'
             project.name() == 'multi-no-dependencies'
         and: 'the version of the project should be "0.0.1"'
             project.version() == '0.0.1'
@@ -121,10 +127,16 @@ class GradleUtilitiesSpec extends Specification {
             project.subProjects().size() == 3
         and: 'the first sub project should be named "api"'
             project.subProjects()[0].name() == 'api'
+        and: 'the group of it should be "com.github.gregoranders"'
+            project.subProjects()[0].group() == 'com.github.gregoranders'
         and: 'the second sub project should be named "impl"'
             project.subProjects()[1].name() == 'impl'
+        and: 'the group of it should be "com.github.gregoranders"'
+            project.subProjects()[1].group() == 'com.github.gregoranders'
         and: 'the third sub project should be named "test"'
             project.subProjects()[2].name() == 'test'
+        and: 'the group of it should be "com.github.gregoranders"'
+            project.subProjects()[2].group() == 'com.github.gregoranders'
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }

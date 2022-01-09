@@ -29,7 +29,8 @@ import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Projec
 import java.io.Serial;
 import java.util.Set;
 
-public record DefaultProject(String name,
+public record DefaultProject(String group,
+                             String name,
                              String description,
                              String version,
                              String path,

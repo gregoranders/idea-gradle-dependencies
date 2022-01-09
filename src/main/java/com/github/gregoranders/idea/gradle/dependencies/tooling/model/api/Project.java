@@ -27,6 +27,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 public interface Project extends Serializable {
+    String group();
+
     String name();
 
     String description();
