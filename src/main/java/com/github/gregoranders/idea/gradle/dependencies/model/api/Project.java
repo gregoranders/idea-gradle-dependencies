@@ -25,10 +25,8 @@ package com.github.gregoranders.idea.gradle.dependencies.model.api;
 
 import org.immutables.value.Value;
 
-import javax.annotation.Nullable;
 import java.util.Set;
 
-@SuppressWarnings("common-java:DuplicatedBlocks")
 @Value.Immutable
 public interface Project {
 
@@ -39,7 +37,6 @@ public interface Project {
     String name();
 
     @Value.Parameter(order = 3)
-    @Nullable
     String description();
 
     @Value.Parameter(order = 4)

@@ -39,7 +39,7 @@ class ProjectConfigurationPlugin implements Plugin<Project> {
             outDir.mkdirs()
             ant.taskdef(name: 'cpd', classname: 'net.sourceforge.pmd.cpd.CPDTask',
                 classpath: project.configurations.pmd.asPath)
-            ant.cpd(minimumTokenCount: '40', format: 'xml',
+            ant.cpd(minimumTokenCount: '80', format: 'xml',
                 outputFile: new File(outDir, 'main.xml')) {
                 ant.fileset(dir: 'src/main/java') {
                     include(name: '**/*.java')

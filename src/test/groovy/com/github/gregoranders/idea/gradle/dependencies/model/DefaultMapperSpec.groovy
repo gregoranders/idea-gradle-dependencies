@@ -55,13 +55,13 @@ class DefaultMapperSpec extends Specification {
             Dependency dependencyTwo = ImmutableDependency.of('subProjectGroup', 'dependencyName', 'dependencyVersion')
             Dependency dependencyThree = ImmutableDependency.of('dependencyGroup', 'dependencyName', 'dependencyVersion')
             Configuration configuration = ImmutableConfiguration.of('configurationName', new LinkedHashSet([dependencySub, dependencyOne, dependencyTwo, dependencyThree]))
-            Project project = ImmutableProject.of('projectGroup', 'projectName', 'projectDescription', 'projectVersion', 'projectPath', Set.of(configuration), Set.of(subProject))
+            Project project = ImmutableProject.of('projectGroup', 'projectName', null, 'projectVersion', 'projectPath', Set.of(configuration), Set.of(subProject))
         when: 'the unit under test maps this project'
             def mappedProject = testSubject.map(project)
         then: 'the project should match the expectations'
             mappedProject.group() == 'projectGroup'
             mappedProject.name() == 'projectName'
-            mappedProject.description() == 'projectDescription'
+            mappedProject.description() == ''
             mappedProject.version() == 'projectVersion'
             mappedProject.path() == 'projectPath'
             mappedProject.subProjects().size() == 1

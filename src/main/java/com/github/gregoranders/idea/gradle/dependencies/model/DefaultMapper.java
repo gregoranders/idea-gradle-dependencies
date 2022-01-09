@@ -31,6 +31,7 @@ import com.github.gregoranders.idea.gradle.dependencies.model.api.ImmutableProje
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Mapper;
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Project;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -45,7 +46,7 @@ public final class DefaultMapper implements Mapper {
     public Project map(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project project) {
         subProjects.add(project);
         final Set<Project> projects = mapSubProjects(project.subProjects());
-        return ImmutableProject.of(project.group(), project.name(), project.description(), project.version(), project.path(),
+        return ImmutableProject.of(project.group(), project.name(), mapNullable(project.description()), project.version(), project.path(),
             mapConfigurations(project.configurations()), projects);
     }
 
@@ -69,7 +70,11 @@ public final class DefaultMapper implements Mapper {
     }
 
     private Dependency mapDependency(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency dependency) {
-        return ImmutableDependency.of(dependency.group(), dependency.name(), dependency.version(), isSubProject(dependency));
+        return ImmutableDependency.of(mapNullable(dependency.group()), dependency.name(), mapNullable(dependency.version()), isSubProject(dependency));
+    }
+
+    private String mapNullable(@Nullable final String nullableText) {
+        return nullableText == null ? "" : nullableText;
     }
 
     private boolean isSubProject(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency dependency) {
