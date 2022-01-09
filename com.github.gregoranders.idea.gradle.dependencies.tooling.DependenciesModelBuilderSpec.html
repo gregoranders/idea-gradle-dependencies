@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=fff7a2b2d5d760fe729e3e95500ea8462d61ad35">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=c461ebb16ec3c3abc0d7ccbb870113547a7d226d">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -85,7 +85,7 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.178 seconds</td>
+      <td>0.133 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -101,6 +101,7 @@
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/24">#24</a></li>
 </ul>
 
 <h4 id="see">See:</h4>
@@ -230,7 +231,7 @@ Time: 0</p>
 <h1 id="should-return-project-model">should return project model</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.112 seconds</p>
+Time: 0.085 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a mocked Project</li>
@@ -287,6 +288,7 @@ Time: 0.112 seconds</p>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedConfiguration</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testConfigurationName'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedConfigurationsContainer</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">mockedConfiguration</span><span class="o">)</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getConfigurations</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="n">mockedConfigurationsContainer</span>
+    <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getGroup</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectGroup'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectName'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getDescription</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectDescription'</span>
     <span class="mi">1</span> <span class="o">*</span> <span class="n">mockedProject</span><span class="o">.</span><span class="na">getVersion</span><span class="o">()</span> <span class="o">&gt;&gt;</span> <span class="s1">'testProjectVersion'</span>
@@ -300,6 +302,13 @@ Time: 0.112 seconds</p>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span> <span class="k">instanceof</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Project</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have the name set to “testProjectGroup”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testProjectGroup'</span>
 </code></pre></div></div>
 
 <ul>

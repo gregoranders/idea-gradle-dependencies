@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=fff7a2b2d5d760fe729e3e95500ea8462d61ad35">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=c461ebb16ec3c3abc0d7ccbb870113547a7d226d">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -80,12 +80,12 @@
   </thead>
   <tbody>
     <tr>
-      <td>4</td>
+      <td>5</td>
       <td>100.0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>2.918 seconds</td>
+      <td>2.439 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -104,6 +104,7 @@
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/14">#14</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/24">#24</a></li>
 </ul>
 
 <h4 id="see">See:</h4>
@@ -118,6 +119,7 @@
   <li><a href="#should-return-an-empty-set-of-dependencies-of-a-simple-project-with-no-dependencies">should return an empty set of dependencies of a simple project with no dependencies</a></li>
   <li><a href="#should-return-a-set-of-dependencies-of-a-simple-project-with-dependencies">should return a set of dependencies of a simple project with dependencies</a></li>
   <li><a href="#should-return-a-multi-project-with-no-dependencies">should return a multi project with no dependencies</a></li>
+  <li><a href="#should-return-a-multi-project-with-dependencies">should return a multi project with dependencies</a></li>
   <li><a href="#should-throw-an-exception">should throw an exception</a></li>
 </ul>
 
@@ -126,7 +128,7 @@
 <h1 id="should-return-an-empty-set-of-dependencies-of-a-simple-project-with-no-dependencies">should return an empty set of dependencies of a simple project with no dependencies</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 2.128 seconds</p>
+Time: 1.669 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a path to a simple project with no dependencies</li>
@@ -143,7 +145,14 @@ Time: 2.128 seconds</p>
 </code></pre></div></div>
 
 <ul>
-  <li><strong>Then</strong> the name of the project should be “simple-no-dependencies”</li>
+  <li><strong>Then</strong> the group of the project should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the name of the project should be “simple-no-dependencies”</li>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'simple-no-dependencies'</span>
@@ -182,7 +191,7 @@ Time: 2.128 seconds</p>
 <h1 id="should-return-a-set-of-dependencies-of-a-simple-project-with-dependencies">should return a set of dependencies of a simple project with dependencies</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.268 seconds</p>
+Time: 0.156 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a path to a simple project with no dependencies</li>
@@ -199,7 +208,14 @@ Time: 0.268 seconds</p>
 </code></pre></div></div>
 
 <ul>
-  <li><strong>Then</strong> the name of the project should be “simple-no-dependencies”</li>
+  <li><strong>Then</strong> the group of the project should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the name of the project should be “simple-no-dependencies”</li>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'simple-with-dependencies'</span>
@@ -254,7 +270,7 @@ Time: 0.268 seconds</p>
 <h1 id="should-return-a-multi-project-with-no-dependencies">should return a multi project with no dependencies</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.313 seconds</p>
+Time: 0.308 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a path to a multi project with no dependencies</li>
@@ -271,7 +287,14 @@ Time: 0.313 seconds</p>
 </code></pre></div></div>
 
 <ul>
-  <li><strong>Then</strong> the name of the project should be “multi-no-dependencies”</li>
+  <li><strong>Then</strong> the group of the project should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the name of the project should be “multi-no-dependencies”</li>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'multi-no-dependencies'</span>
@@ -315,6 +338,13 @@ Time: 0.313 seconds</p>
 </code></pre></div></div>
 
 <ul>
+  <li><strong>And</strong> the group of it should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
   <li><strong>And</strong> the second sub project should be named “impl”</li>
 </ul>
 
@@ -322,10 +352,179 @@ Time: 0.313 seconds</p>
 </code></pre></div></div>
 
 <ul>
+  <li><strong>And</strong> the group of it should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">1</span><span class="o">].</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
   <li><strong>And</strong> the third sub project should be named “test”</li>
 </ul>
 
 <div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'test'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the group of it should be “com.github.gregoranders”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'com.github.gregoranders'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> no exceptions are thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noExceptionThrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+<h1 id="should-return-a-multi-project-with-dependencies">should return a multi project with dependencies</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.195 seconds</p>
+
+<ul>
+  <li><strong>Given</strong> a path to a multi project with dependencies</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">path</span> <span class="o">=</span> <span class="n">getProjectPath</span><span class="o">(</span><span class="s1">'multi-with-dependencies'</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> the test subject invokes getDependencies with this path</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">project</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">getDependencies</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> the name of the project should be “multi-with-dependencies”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'multi-with-dependencies'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the version of the project should be “0.0.1”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'0.0.1'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the description of the project should be “Multi project with dependencies”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">description</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'Multi project with dependencies'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the project should have no dependencies in all configurations</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the project should have 3 sub projects</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">3</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the first sub project should be named “api”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'api'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have the version “0.0.2”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'0.0.2'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have no dependencies in all configurations</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the second sub project should be named “impl”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">1</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'impl'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have the version “0.0.2”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">1</span><span class="o">].</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'0.0.3'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have 2 dependencies in the implementation configuration</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">1</span><span class="o">].</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'implementation'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span>
+
+                    <span class="n">assertDependency</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">],</span> <span class="s1">'com.github.gregoranders'</span><span class="o">,</span> <span class="s1">'api'</span><span class="o">,</span> <span class="s1">'0.0.2'</span><span class="o">)</span>
+                    <span class="n">assertDependency</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">1</span><span class="o">],</span> <span class="s1">'org.slf4j'</span><span class="o">,</span> <span class="s1">'slf4j-api'</span><span class="o">,</span> <span class="s1">'1.7.32'</span><span class="o">)</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the third sub project should be named “test”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'test'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have the version “0.0.4”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'0.0.4'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have 2 dependencies in the implementation configuration</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'implementation'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span>
+
+                    <span class="n">assertDependency</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">],</span> <span class="s1">'com.github.gregoranders'</span><span class="o">,</span> <span class="s1">'impl'</span><span class="o">,</span> <span class="s1">'0.0.3'</span><span class="o">)</span>
+                    <span class="n">assertDependency</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">1</span><span class="o">],</span> <span class="s1">'org.slf4j'</span><span class="o">,</span> <span class="s1">'slf4j-api'</span><span class="o">,</span> <span class="s1">'1.7.32'</span><span class="o">)</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> it should have 1 dependencies in the testImplementation configuration</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span><span class="o">.</span><span class="na">subProjects</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">configuration</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'testImplementation'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">assert</span> <span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
+
+                    <span class="n">assertDependency</span><span class="o">(</span><span class="n">configuration</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">],</span> <span class="s1">'org.junit.jupiter'</span><span class="o">,</span> <span class="s1">'junit-jupiter-engine'</span><span class="o">,</span> <span class="s1">'5.8.2'</span><span class="o">)</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
 </code></pre></div></div>
 
 <ul>
@@ -338,7 +537,7 @@ Time: 0.313 seconds</p>
 <h1 id="should-throw-an-exception">should throw an exception</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.135 seconds</p>
+Time: 0.059 seconds</p>
 
 <ul>
   <li><strong>Given</strong> an invalid path</li>

@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=fff7a2b2d5d760fe729e3e95500ea8462d61ad35">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=c461ebb16ec3c3abc0d7ccbb870113547a7d226d">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -79,12 +79,12 @@
   </thead>
   <tbody>
     <tr>
-      <td>7</td>
+      <td>8</td>
       <td>100.0%</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.018 seconds</td>
+      <td>0.016 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -101,6 +101,7 @@
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/5">#5</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/24">#24</a></li>
 </ul>
 
 <h4 id="see">See:</h4>
@@ -108,12 +109,14 @@
 <ul>
   <li><a href="https://gradle.org">https://gradle.org</a></li>
   <li><a href="https://github.com/bmuschko/tooling-api-custom-model">https://github.com/bmuschko/tooling-api-custom-model</a></li>
+  <li><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html">https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/api/Project.java">com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultProject.java">com.github.gregoranders.idea.gradle.dependencies.tooling.model.DefaultProject</a></li>
 </ul>
 
 <h2 id="features">Features</h2>
 <ul>
+  <li><a href="#should-return-expected-project-group">should return expected project group</a></li>
   <li><a href="#should-return-expected-project-name">should return expected project name</a></li>
   <li><a href="#should-return-expected-project-description">should return expected project description</a></li>
   <li><a href="#should-return-expected-project-version">should return expected project version</a></li>
@@ -124,6 +127,24 @@
 </ul>
 
 <hr />
+
+<h1 id="should-return-expected-project-group">should return expected project group</h1>
+
+<h4 id="issues-1">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/24">#24</a></li>
+</ul>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Expect</strong> name to equal “testProjectGroup”</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testSubject</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="n">projectGroup</span>
+</code></pre></div></div>
 
 <h1 id="should-return-expected-project-name">should return expected project name</h1>
 
@@ -175,7 +196,7 @@ Time: 0</p>
 
 <h1 id="should-return-a-set-with-one-configuration">should return a set with one configuration</h1>
 
-<h4 id="issues-1">Issues:</h4>
+<h4 id="issues-2">Issues:</h4>
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
@@ -193,7 +214,7 @@ Time: 0</p>
 
 <h1 id="should-contain-expected-configuration">should contain expected configuration</h1>
 
-<h4 id="issues-2">Issues:</h4>
+<h4 id="issues-3">Issues:</h4>
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/22">#22</a></li>
@@ -211,7 +232,7 @@ Time: 0</p>
 
 <h1 id="should-contain-expected-sub-project">should contain expected sub project</h1>
 
-<h4 id="issues-3">Issues:</h4>
+<h4 id="issues-4">Issues:</h4>
 
 <ul>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/17">#17</a></li>
