@@ -23,12 +23,24 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.model.api;
 
+import org.immutables.value.Value;
+
+import javax.annotation.Nullable;
+
+@Value.Immutable
 public interface Dependency {
+
+    @Value.Parameter(order = 1)
+    @Nullable
     String group();
 
+    @Value.Parameter(order = 2)
     String name();
 
+    @Value.Parameter(order = 3)
+    @Nullable
     String version();
 
+    @Value.Parameter(order = 4)
     boolean isSubProject();
 }

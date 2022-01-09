@@ -23,10 +23,9 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultConfiguration;
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency;
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultProject;
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableConfiguration;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableDependency;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableProject;
 import org.gradle.api.NonNullApi;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.ConfigurationContainer;
@@ -62,7 +61,7 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
     private com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project mapProject(final Project project) {
         final ConfigurationContainer configurations = project.getConfigurations();
 
-        return new DefaultProject(getGroup(project.getGroup()), project.getName(), project.getDescription(), getVersion(project.getVersion()),
+        return ImmutableProject.of(getGroup(project.getGroup()), project.getName(), project.getDescription(), getVersion(project.getVersion()),
             project.getPath(), mapConfigurations(configurations), mapSubProjects(project.getSubprojects()));
     }
 
@@ -75,15 +74,17 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
-    private Set<Configuration> mapConfigurations(final ConfigurationContainer configurations) {
+    private Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration> mapConfigurations(
+        final ConfigurationContainer configurations) {
         return configurations
             .stream()
             .map(this::mapConfiguration)
             .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
-    private Configuration mapConfiguration(final org.gradle.api.artifacts.Configuration configuration) {
-        return new DefaultConfiguration(configuration.getName(), mapDependencies(configuration.getDependencies()));
+    private com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration mapConfiguration(
+        final org.gradle.api.artifacts.Configuration configuration) {
+        return ImmutableConfiguration.of(configuration.getName(), mapDependencies(configuration.getDependencies()));
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
@@ -95,6 +96,6 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
     }
 
     private com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency mapDependency(final Dependency dependency) {
-        return new DefaultDependency(dependency.getGroup(), dependency.getName(), dependency.getVersion());
+        return ImmutableDependency.of(dependency.getGroup(), dependency.getName(), dependency.getVersion());
     }
 }

@@ -24,7 +24,6 @@
 
 
 import org.gradle.api.DefaultTask
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.publish.maven.MavenPublication
@@ -71,8 +70,6 @@ class ProjectConfigurationPlugin implements Plugin<Project> {
                     events 'passed', 'skipped', 'failed'
                 }
             }
-            projectInternal.java.sourceCompatibility = JavaVersion.VERSION_17
-            projectInternal.java.targetCompatibility = JavaVersion.VERSION_17
         }
     }
 
@@ -80,7 +77,6 @@ class ProjectConfigurationPlugin implements Plugin<Project> {
         if (projectInternal.plugins.hasPlugin('java-library')) {
             projectInternal.java {
                 withSourcesJar()
-                withJavadocJar()
             }
         }
     }

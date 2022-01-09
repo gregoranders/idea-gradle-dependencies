@@ -25,6 +25,9 @@ package com.github.gregoranders.idea.gradle.dependencies.model;
 
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Configuration;
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Dependency;
+import com.github.gregoranders.idea.gradle.dependencies.model.api.ImmutableConfiguration;
+import com.github.gregoranders.idea.gradle.dependencies.model.api.ImmutableDependency;
+import com.github.gregoranders.idea.gradle.dependencies.model.api.ImmutableProject;
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Mapper;
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Project;
 
@@ -42,7 +45,7 @@ public final class DefaultMapper implements Mapper {
     public Project map(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project project) {
         subProjects.add(project);
         final Set<Project> projects = mapSubProjects(project.subProjects());
-        return new DefaultProject(project.group(), project.name(), project.description(), project.version(), project.path(),
+        return ImmutableProject.of(project.group(), project.name(), project.description(), project.version(), project.path(),
             mapConfigurations(project.configurations()), projects);
     }
 
@@ -55,7 +58,7 @@ public final class DefaultMapper implements Mapper {
     }
 
     private Configuration mapConfiguration(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration configuration) {
-        return new DefaultConfiguration(configuration.name(), mapDependencies(configuration.dependencies()));
+        return ImmutableConfiguration.of(configuration.name(), mapDependencies(configuration.dependencies()));
     }
 
     private Set<Dependency> mapDependencies(final Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency> dependencies) {
@@ -66,7 +69,7 @@ public final class DefaultMapper implements Mapper {
     }
 
     private Dependency mapDependency(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency dependency) {
-        return new DefaultDependency(dependency.group(), dependency.name(), dependency.version(), isSubProject(dependency));
+        return ImmutableDependency.of(dependency.group(), dependency.name(), dependency.version(), isSubProject(dependency));
     }
 
     private boolean isSubProject(final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency dependency) {

@@ -23,9 +23,7 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.model
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.*
 import com.github.gregoranders.idea.gradle.dependencies.model.api.Mapper
 import spock.lang.*
 
@@ -49,15 +47,15 @@ class DefaultMapperSpec extends Specification {
 
     def 'should returned mapped model'() {
         given: 'a project with a subproject as a dependency'
-            Dependency subDependency = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency('subDependencyGroup', 'subDependencyName', 'subDependencyVersion')
-            Configuration subConfiguration = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultConfiguration('subConfigurationName', Set.of(subDependency))
-            Project subProject = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultProject('subProjectGroup', 'subProjectName', 'subProjectDescription', 'subProjectVersion', 'subProjectPath', Set.of(subConfiguration), Set.of())
-            Dependency dependencySub = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency('subProjectGroup', 'subProjectName', 'subProjectVersion')
-            Dependency dependencyOne = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency('subProjectGroup', 'subProjectName', 'dependencyVersion')
-            Dependency dependencyTwo = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency('subProjectGroup', 'dependencyName', 'dependencyVersion')
-            Dependency dependencyThree = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultDependency('dependencyGroup', 'dependencyName', 'dependencyVersion')
-            Configuration configuration = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultConfiguration('configurationName', new LinkedHashSet([dependencySub, dependencyOne, dependencyTwo, dependencyThree]))
-            Project project = new com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.DefaultProject('projectGroup', 'projectName', 'projectDescription', 'projectVersion', 'projectPath', Set.of(configuration), Set.of(subProject))
+            Dependency subDependency = ImmutableDependency.of('subDependencyGroup', 'subDependencyName', 'subDependencyVersion')
+            Configuration subConfiguration = ImmutableConfiguration.of('subConfigurationName', Set.of(subDependency))
+            Project subProject = ImmutableProject.of('subProjectGroup', 'subProjectName', 'subProjectDescription', 'subProjectVersion', 'subProjectPath', Set.of(subConfiguration), Set.of())
+            Dependency dependencySub = ImmutableDependency.of('subProjectGroup', 'subProjectName', 'subProjectVersion')
+            Dependency dependencyOne = ImmutableDependency.of('subProjectGroup', 'subProjectName', 'dependencyVersion')
+            Dependency dependencyTwo = ImmutableDependency.of('subProjectGroup', 'dependencyName', 'dependencyVersion')
+            Dependency dependencyThree = ImmutableDependency.of('dependencyGroup', 'dependencyName', 'dependencyVersion')
+            Configuration configuration = ImmutableConfiguration.of('configurationName', new LinkedHashSet([dependencySub, dependencyOne, dependencyTwo, dependencyThree]))
+            Project project = ImmutableProject.of('projectGroup', 'projectName', 'projectDescription', 'projectVersion', 'projectPath', Set.of(configuration), Set.of(subProject))
         when: 'the unit under test maps this project'
             def mappedProject = testSubject.map(project)
         then: 'the project should match the expectations'
