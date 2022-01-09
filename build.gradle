@@ -86,12 +86,6 @@ dependencies {
 
   implementation(
     gradleApi(),
-    [group: 'org.slf4j', name: 'slf4j-api', version: property('slf4jVersion')],
-  )
-
-  runtimeOnly(
-    [group: 'ch.qos.logback', name: 'logback-core', version: property('logbackVersion')],
-    [group: 'ch.qos.logback', name: 'logback-classic', version: property('logbackVersion')],
   )
 
   testImplementation(
