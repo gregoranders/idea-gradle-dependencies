@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.tooling.model;
-
-import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency;
-import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration;
+package com.github.gregoranders.idea.gradle.dependencies;
 
 import java.io.Serial;
-import java.util.List;
 
-public record DefaultConfiguration(String name,
-                                   List<Dependency> dependencies) implements Configuration {
+public final class GradleUtilitiesException extends RuntimeException {
+
     @Serial
     private static final long serialVersionUID = -1L;
+
+    public GradleUtilitiesException(final Exception exception) {
+        super(exception);
+    }
 }
