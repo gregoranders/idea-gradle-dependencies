@@ -43,7 +43,7 @@ import spock.lang.*
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultProject.java'
 ])
 @Issue([
-    '5', '17'
+    '5', '17', '22'
 ])
 class DefaultProjectSpec extends Specification {
 
@@ -65,12 +65,12 @@ class DefaultProjectSpec extends Specification {
 
     Dependency dependency = new DefaultDependency(dependencyGroup, dependencyName, dependencyVersion)
 
-    Configuration configuration = new DefaultConfiguration(configurationName, List.of(dependency))
+    Configuration configuration = new DefaultConfiguration(configurationName, Set.of(dependency))
 
-    Project subProject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, List.of(configuration), List.of())
+    Project subProject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of())
 
     @Subject
-    Project testSubject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, List.of(configuration), List.of(subProject))
+    Project testSubject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of(subProject))
 
     def 'should return expected project name'() {
         expect: 'name to equal "testProjectName"'
@@ -92,19 +92,21 @@ class DefaultProjectSpec extends Specification {
             testSubject.path() == projectPath
     }
 
-    def 'should return a list with one configuration'() {
-        expect: 'list of configurations should have one element'
+    @Issue('22')
+    def 'should return a set with one configuration'() {
+        expect: 'set of configurations should have one element'
             testSubject.configurations().size() == 1
     }
 
+    @Issue('22')
     def 'should contain expected configuration'() {
         expect: 'should equal provided configuration'
-            testSubject.configurations().get(0) == configuration
+            testSubject.configurations()[0] == configuration
     }
 
-    @Issue('17')
+    @Issue(['17', '22'])
     def 'should contain expected sub project'() {
         expect: 'should equal sub project'
-            testSubject.subProjects().get(0) == subProject
+            testSubject.subProjects()[0] == subProject
     }
 }

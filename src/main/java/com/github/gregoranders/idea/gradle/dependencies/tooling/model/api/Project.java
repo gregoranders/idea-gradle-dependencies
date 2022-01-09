@@ -24,7 +24,7 @@
 package com.github.gregoranders.idea.gradle.dependencies.tooling.model.api;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 public interface Project extends Serializable {
     String name();
@@ -35,7 +35,7 @@ public interface Project extends Serializable {
 
     String path();
 
-    List<Configuration> configurations();
+    Set<Configuration> configurations();
 
-    List<Project> subProjects();
+    Set<Project> subProjects();
 }

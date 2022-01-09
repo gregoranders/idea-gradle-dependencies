@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/GradleUtilities.java'
 ])
 @Issue([
-    '2', '5', '6', '14', '17'
+    '2', '5', '6', '14', '17', '22'
 ])
 @Mockable(Configuration)
 class GradleUtilitiesSpec extends Specification {
@@ -53,7 +53,7 @@ class GradleUtilitiesSpec extends Specification {
     @Subject
     GradleUtilities testSubject = new GradleUtilities(configuration)
 
-    def 'should return an empty list of dependencies of a simple project with no dependencies'() {
+    def 'should return an empty set of dependencies of a simple project with no dependencies'() {
         given: 'a path to a simple project with no dependencies'
             def path = getProjectPath('simple-no-dependencies')
         when: 'the test subject invokes getDependencies with this path'
@@ -72,7 +72,7 @@ class GradleUtilitiesSpec extends Specification {
             noExceptionThrown()
     }
 
-    def 'should return a list of dependencies of a simple project with dependencies'() {
+    def 'should return a set of dependencies of a simple project with dependencies'() {
         given: 'a path to a simple project with no dependencies'
             def path = getProjectPath('simple-with-dependencies')
         when: 'the test subject invokes getDependencies with this path'
@@ -87,15 +87,15 @@ class GradleUtilitiesSpec extends Specification {
             project.configurations().forEach(configuration -> {
                 if (configuration.name() == 'implementation') {
                     assert configuration.dependencies().size() == 1
-                    assertDependency(configuration.dependencies().get(0), 'org.slf4j', 'slf4j-api', '1.7.32')
+                    assertDependency(configuration.dependencies()[0], 'org.slf4j', 'slf4j-api', '1.7.32')
                 }
             })
         and: 'the project should have 2 dependencies in the runtimeOnly configurations'
             project.configurations().forEach(configuration -> {
                 if (configuration.name() == 'runtimeOnly') {
                     assert configuration.dependencies().size() == 2
-                    assertDependency(configuration.dependencies().get(0), 'ch.qos.logback', 'logback-core', '1.2.9')
-                    assertDependency(configuration.dependencies().get(1), 'ch.qos.logback', 'logback-classic', '1.2.9')
+                    assertDependency(configuration.dependencies()[0], 'ch.qos.logback', 'logback-core', '1.2.9')
+                    assertDependency(configuration.dependencies()[1], 'ch.qos.logback', 'logback-classic', '1.2.9')
                 }
             })
         and: 'no exceptions are thrown'
@@ -120,11 +120,11 @@ class GradleUtilitiesSpec extends Specification {
         and: 'the project should have 3 sub projects'
             project.subProjects().size() == 3
         and: 'the first sub project should be named "api"'
-            project.subProjects().get(0).name() == 'api'
+            project.subProjects()[0].name() == 'api'
         and: 'the second sub project should be named "impl"'
-            project.subProjects().get(1).name() == 'impl'
+            project.subProjects()[1].name() == 'impl'
         and: 'the third sub project should be named "test"'
-            project.subProjects().get(2).name() == 'test'
+            project.subProjects()[2].name() == 'test'
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }

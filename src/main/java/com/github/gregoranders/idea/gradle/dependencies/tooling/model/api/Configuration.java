@@ -24,10 +24,10 @@
 package com.github.gregoranders.idea.gradle.dependencies.tooling.model.api;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 public interface Configuration extends Serializable {
     String name();
 
-    List<Dependency> dependencies();
+    Set<Dependency> dependencies();
 }

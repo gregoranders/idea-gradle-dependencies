@@ -27,10 +27,10 @@ import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Depend
 import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration;
 
 import java.io.Serial;
-import java.util.List;
+import java.util.Set;
 
 public record DefaultConfiguration(String name,
-                                   List<Dependency> dependencies) implements Configuration {
+                                   Set<Dependency> dependencies) implements Configuration {
     @Serial
     private static final long serialVersionUID = -1L;
 }

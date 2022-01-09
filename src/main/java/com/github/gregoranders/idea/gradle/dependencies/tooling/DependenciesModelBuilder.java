@@ -34,8 +34,9 @@ import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.DependencySet;
 import org.gradle.tooling.provider.model.ToolingModelBuilder;
 
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NonNullApi
 public final class DependenciesModelBuilder implements ToolingModelBuilder {
@@ -62,19 +63,19 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
-    private List<com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project> mapSubProjects(final Set<Project> projects) {
+    private Set<com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project> mapSubProjects(final Set<Project> projects) {
         return projects
             .stream()
             .map(this::mapProject)
-            .toList();
+            .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
-    private List<Configuration> mapConfigurations(final ConfigurationContainer configurations) {
+    private Set<Configuration> mapConfigurations(final ConfigurationContainer configurations) {
         return configurations
             .stream()
             .map(this::mapConfiguration)
-            .toList();
+            .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     private Configuration mapConfiguration(final org.gradle.api.artifacts.Configuration configuration) {
@@ -82,11 +83,11 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
-    private List<com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency> mapDependencies(final DependencySet dependencies) {
+    private Set<com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency> mapDependencies(final DependencySet dependencies) {
         return dependencies
             .stream()
             .map(this::mapDependency)
-            .toList();
+            .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     private com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency mapDependency(final Dependency dependency) {
