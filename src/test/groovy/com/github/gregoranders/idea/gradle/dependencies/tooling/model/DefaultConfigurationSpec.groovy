@@ -42,7 +42,7 @@ import spock.lang.*
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultConfiguration.java'
 ])
 @Issue([
-    '5'
+    '5', '22'
 ])
 class DefaultConfigurationSpec extends Specification {
 
@@ -57,20 +57,22 @@ class DefaultConfigurationSpec extends Specification {
     Dependency dependency = new DefaultDependency(dependencyGroup, dependencyName, dependencyVersion)
 
     @Subject
-    Configuration testSubject = new DefaultConfiguration(configurationName, List.of(dependency))
+    Configuration testSubject = new DefaultConfiguration(configurationName, Set.of(dependency))
 
     def 'should return expected configuration name'() {
         expect: 'name to equal "testConfiguration"'
             testSubject.name() == configurationName
     }
 
-    def 'should return a list with one dependency'() {
-        expect: 'list of dependencies should have one element'
+    @Issue('22')
+    def 'should return a set with one dependency'() {
+        expect: 'set of dependencies should have one element'
             testSubject.dependencies().size() == 1
     }
 
+    @Issue('22')
     def 'should contain expected dependency'() {
         expect: 'should equal provided dependency'
-            testSubject.dependencies().get(0) == dependency
+            testSubject.dependencies()[0] == dependency
     }
 }

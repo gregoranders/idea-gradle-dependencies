@@ -47,7 +47,7 @@ import java.util.stream.Stream
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/DependenciesModelBuilder.java'
 ])
 @Issue([
-    '5'
+    '5', '17', '22'
 ])
 class DependenciesModelBuilderSpec extends Specification {
 
@@ -92,6 +92,7 @@ class DependenciesModelBuilderSpec extends Specification {
                 1 * mockedProject.getDescription() >> 'testProjectDescription'
                 1 * mockedProject.getVersion() >> 'testProjectVersion'
                 1 * mockedProject.getPath() >> 'testProjectPath'
+                1 * mockedProject.getSubprojects() >> Set.of()
             }
         and: 'a project model should be returned'
             project instanceof com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project
@@ -106,15 +107,15 @@ class DependenciesModelBuilderSpec extends Specification {
         and: 'it should contain one configuration'
             project.configurations().size() == 1
         and: 'this configuration should have the name "testConfigurationName"'
-            project.configurations().get(0).name() == 'testConfigurationName'
+            project.configurations()[0].name() == 'testConfigurationName'
         and: 'it should contain one dependency'
-            project.configurations().get(0).dependencies().size() == 1
+            project.configurations()[0].dependencies().size() == 1
         and: 'this dependency should have the name of "testDependencyName"'
-            project.configurations().get(0).dependencies().get(0).name() == 'testDependencyName'
+            project.configurations()[0].dependencies()[0].name() == 'testDependencyName'
         and: 'it should have the group of "testDependencyGroup"'
-            project.configurations().get(0).dependencies().get(0).group() == 'testDependencyGroup'
+            project.configurations()[0].dependencies()[0].group() == 'testDependencyGroup'
         and: 'it should have the version of "testDependencyVersion"'
-            project.configurations().get(0).dependencies().get(0).version() == 'testDependencyVersion'
+            project.configurations()[0].dependencies()[0].version() == 'testDependencyVersion'
         and: 'no exceptions should be thrown'
             noExceptionThrown()
     }

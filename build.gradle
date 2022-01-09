@@ -80,8 +80,6 @@ project.modularity.patchModule('gradle-api', "groovy-xml-${property('groovyVersi
 
 project.modularity.patchModule('gradle-api', "javaparser-core-${property('javaparserCoreVersion')}.jar")
 
-project.modularity.patchModule('gradle-api', "slf4j-api-${property('slf4jVersion')}.jar")
-
 dependencies {
 
   implementation(

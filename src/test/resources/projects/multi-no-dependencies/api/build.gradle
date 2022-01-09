@@ -1,0 +1,6 @@
+//file:noinspection GrPackage
+
+plugins {
+  id 'java'
+  id 'java-library'
+}

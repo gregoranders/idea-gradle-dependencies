@@ -27,13 +27,14 @@ import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Config
 import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project;
 
 import java.io.Serial;
-import java.util.List;
+import java.util.Set;
 
 public record DefaultProject(String name,
                              String description,
                              String version,
                              String path,
-                             List<Configuration> configurations) implements Project {
+                             Set<Configuration> configurations,
+                             Set<Project> subProjects) implements Project {
     @Serial
     private static final long serialVersionUID = -1L;
 }
