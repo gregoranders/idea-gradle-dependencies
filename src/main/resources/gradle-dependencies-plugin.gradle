@@ -2,10 +2,10 @@
 
 initscript {
   dependencies {
-    classpath files('GRADLE_DEPENDENCIES_PLUGIN_PATH')
+    classpath files('%%GRADLE_DEPENDENCIES_PLUGIN_PATH%%')
   }
 }
 
 allprojects {
-  apply plugin: com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesPlugin
+  apply plugin: %%GRADLE_DEPENDENCIES_PLUGIN%%
 }

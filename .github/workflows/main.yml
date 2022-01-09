@@ -72,6 +72,12 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           arguments: --info --stacktrace sonarqube
+      - name: Upload reports as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
+          path: build/reports
+          retention-days: 2
       - name: Get cached gems
         if: matrix.os == 'ubuntu-latest'
         uses: actions/cache@v2
