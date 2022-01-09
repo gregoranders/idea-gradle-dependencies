@@ -77,3 +77,4 @@ jobs:
         with:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
           path: build/reports
+          retention-days: 2

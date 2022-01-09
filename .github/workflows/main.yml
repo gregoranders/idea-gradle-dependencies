@@ -77,6 +77,7 @@ jobs:
         with:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
           path: build/reports
+          retention-days: 2
       - name: Get cached gems
         if: matrix.os == 'ubuntu-latest'
         uses: actions/cache@v2
