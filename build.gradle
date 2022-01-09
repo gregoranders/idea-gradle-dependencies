@@ -17,14 +17,16 @@ plugins {
   id 'projectConfiguration'
 }
 
+def javaVersion = JavaVersion.VERSION_11
+
 repositories {
   mavenCentral()
   mavenLocal()
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = javaVersion
+  targetCompatibility = javaVersion
 }
 
 idea {
@@ -35,8 +37,8 @@ idea {
 
   project {
     vcs = 'Git'
-    jdkName = "jdk-${JavaVersion.VERSION_17}"
-    languageLevel = JavaVersion.VERSION_17
+    jdkName = "jdk-${javaVersion}"
+    languageLevel = javaVersion
   }
 }
 
@@ -90,36 +92,23 @@ dependencies {
   implementation(
     gradleApi(),
 
-    [group: 'org.immutables', name: 'value', version: property('immutablesVersion')],
-    [group: 'org.immutables', name: 'serial', version: property('immutablesVersion')],
-    [group: 'org.immutables', name: 'builder', version: property('immutablesVersion')],
+    [group: 'org.immutables', name: 'value-annotations', version: property('immutablesVersion')],
   )
 
   testImplementation(
-    [group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: property('junitVersion')],
-    platform(
-      [group: 'org.codehaus.groovy', name: 'groovy-bom', version: property('groovyVersion')]
-    ),
-    [group: 'org.codehaus.groovy', name: 'groovy', version: property('groovyVersion')],
-    [group: 'org.codehaus.groovy', name: 'groovy-json', version: property('groovyVersion')],
-    [group: 'org.codehaus.groovy', name: 'groovy-templates', version: property('groovyVersion')],
-    [group: 'org.codehaus.groovy', name: 'groovy-xml', version: property('groovyVersion')],
-
-    platform(
-      [group: 'org.spockframework', name: 'spock-bom', version: property('spockVersion')]
-    ),
-    [group: 'org.spockframework', name: 'spock-core'],
+    localGroovy(),
     [group: 'io.github.joke', name: 'spock-mockable', version: property('spockMockableVersion')],
   )
 
   testImplementation(
+    [group: 'org.spockframework', name: 'spock-core', version: property('spockVersion')],
+  ) {
+    exclude group: 'org.codehaus.groovy'
+  }
+
+  testRuntimeOnly(
     [group: 'com.athaydes', name: 'spock-reports', version: property('spockReportsVersion')]
   ) {
     transitive = false
   }
-
-  testRuntimeOnly(
-    [group: 'net.bytebuddy', name: 'byte-buddy', version: property('byteBuddyVersion')],
-    [group: 'org.objenesis', name: 'objenesis', version: property('objenesisVersion')],
-  )
 }
