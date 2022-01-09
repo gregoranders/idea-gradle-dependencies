@@ -1,0 +1,5 @@
+//file:noinspection GrPackage
+
+rootProject.name = 'multi-with-dependencies'
+
+include 'api', 'impl', 'test'

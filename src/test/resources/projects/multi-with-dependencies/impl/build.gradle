@@ -1,0 +1,15 @@
+//file:noinspection GrPackage
+
+plugins {
+  id 'java'
+  id 'java-library'
+}
+
+dependencies {
+
+  implementation(
+    project(':api'),
+
+    [group: 'org.slf4j', name: 'slf4j-api', version: property('slf4jVersion')],
+  )
+}
