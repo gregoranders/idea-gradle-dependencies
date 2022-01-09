@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/utilities/InitScript.java'
 ])
 @Issue([
-    '5'
+    '5', '12'
 ])
 class InitScriptSpec extends Specification {
 
