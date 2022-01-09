@@ -23,7 +23,8 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.utilities;
 
-import java.io.Closeable;
+import org.gradle.internal.impldep.org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -35,7 +36,7 @@ import java.security.CodeSource;
 import java.util.List;
 import java.util.Objects;
 
-public final class InitScript implements Closeable {
+public final class InitScript implements AutoCloseable {
 
     private final String initScriptPath;
 
@@ -46,7 +47,7 @@ public final class InitScript implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() throws Exception {
         if (temporaryScriptPath != null) {
             Files.delete(temporaryScriptPath);
         }
@@ -54,7 +55,7 @@ public final class InitScript implements Closeable {
 
     public String getAbsolutePath() throws URISyntaxException, IOException {
         final Path path = getTemporaryInitScriptPath();
-        return getAbsolutePathAsString(path);
+        return FilenameUtils.normalize(getAbsolutePathAsString(path));
     }
 
     private Path getTemporaryInitScriptPath() throws URISyntaxException, IOException {

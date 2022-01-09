@@ -25,7 +25,11 @@ package com.github.gregoranders.idea.gradle.dependencies.tooling.model;
 
 import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency;
 
+import java.io.Serial;
+
 public record DefaultDependency(String group,
                                 String name,
                                 String version) implements Dependency {
+    @Serial
+    private static final long serialVersionUID = -1L;
 }

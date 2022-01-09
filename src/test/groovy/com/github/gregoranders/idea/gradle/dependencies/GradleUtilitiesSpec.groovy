@@ -25,6 +25,7 @@ package com.github.gregoranders.idea.gradle.dependencies
 
 import com.github.gregoranders.idea.gradle.dependencies.configuration.Configuration
 import io.github.joke.spockmockable.Mockable
+import org.gradle.tooling.BuildException
 import spock.lang.*
 
 import java.nio.file.Path
@@ -62,6 +63,19 @@ class GradleUtilitiesSpec extends Specification {
             })
         and: 'no exceptions are thrown'
             noExceptionThrown()
+    }
+
+    def 'should throw an exception'() {
+        given: 'an invalid path'
+            def path = Path.of('foo')
+        when: 'the test subject invokes getDependencies with this path'
+            testSubject.getDependencies(path)
+        then: 'an exception is thrown'
+            GradleUtilitiesException exception = thrown()
+        and: 'the message of the exception matches'
+            exception.getMessage().contains("Could not fetch model of type 'Project' using connection to Gradle distribution")
+        and: 'the cause is of type "BuildException"'
+            exception.getCause() instanceof BuildException
     }
 
     def getProjectPath(String project) {

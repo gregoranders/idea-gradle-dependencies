@@ -60,6 +60,8 @@ class InitScriptSpec extends Specification {
         and: 'it contains the replaced path to the plugin'
             def lines = Files.readAllLines(Path.of(path))
             checkPluginPath(lines)
+        and: 'close is invoked on the testSubject'
+            testSubject.close()
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }
