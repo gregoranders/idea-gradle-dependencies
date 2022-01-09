@@ -24,6 +24,8 @@
 package com.github.gregoranders.idea.gradle.dependencies.utilities;
 
 import org.gradle.internal.impldep.org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,6 +39,8 @@ import java.util.List;
 import java.util.Objects;
 
 public final class InitScript implements AutoCloseable {
+
+    private static final Logger LOG = LoggerFactory.getLogger(InitScript.class);
 
     private final String initScriptPath;
 
@@ -92,6 +96,8 @@ public final class InitScript implements AutoCloseable {
             stringBuilder.append(line.replace("GRADLE_DEPENDENCIES_PLUGIN_PATH", getAbsolutePathAsString(pluginPath)));
             stringBuilder.append(System.lineSeparator());
         });
+
+        LOG.error("Content: {}", stringBuilder);
 
         return stringBuilder.toString();
     }
