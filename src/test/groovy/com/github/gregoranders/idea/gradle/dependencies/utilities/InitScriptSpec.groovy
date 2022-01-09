@@ -23,7 +23,7 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.utilities
 
-
+import org.gradle.internal.impldep.org.apache.commons.io.FilenameUtils
 import spock.lang.*
 
 import java.nio.file.Files
@@ -43,7 +43,7 @@ import java.nio.file.Path
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/utilities/InitScript.java'
 ])
 @Issue([
-    '5'
+    '5', '12'
 ])
 class InitScriptSpec extends Specification {
 
@@ -60,6 +60,8 @@ class InitScriptSpec extends Specification {
         and: 'it contains the replaced path to the plugin'
             def lines = Files.readAllLines(Path.of(path))
             checkPluginPath(lines)
+        and: 'close is invoked on the testSubject'
+            testSubject.close()
         and: 'no exceptions are thrown'
             noExceptionThrown()
     }
@@ -111,7 +113,7 @@ class InitScriptSpec extends Specification {
     def checkPluginPath(List<String> lines) {
         boolean found = false
         lines.forEach(line -> {
-            if (line.contains("/build/classes/java/main')")) {
+            if (line.contains(FilenameUtils.separatorsToUnix("/build/classes/java/main')"))) {
                 found = true
             }
         })

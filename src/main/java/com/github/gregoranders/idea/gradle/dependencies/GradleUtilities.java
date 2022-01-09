@@ -30,8 +30,6 @@ import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ModelBuilder;
 import org.gradle.tooling.ProjectConnection;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
 
 public final class GradleUtilities {
@@ -42,20 +40,24 @@ public final class GradleUtilities {
         configuration = config;
     }
 
-    @SuppressWarnings("UnstableApiUsage")
-    public Project getDependencies(final Path path) throws URISyntaxException, IOException {
-        final GradleConnector connector = getGradleConnector(GradleConnector.newConnector(), path);
+    @SuppressWarnings({"UnstableApiUsage", "PMD.AvoidCatchingGenericException", "PMD.AvoidUncheckedExceptionsInSignatures", "PMD.LawOfDemeter"})
+    public Project getDependencies(final Path path) throws GradleUtilitiesException {
+        try {
+            final GradleConnector connector = getGradleConnector(GradleConnector.newConnector(), path);
 
-        try (ProjectConnection projectConnection = getProjectConnection(connector)) {
+            try (ProjectConnection projectConnection = getProjectConnection(connector)) {
 
-            final ModelBuilder<Project> modelBuilder = projectConnection.model(Project.class);
+                final ModelBuilder<Project> modelBuilder = projectConnection.model(Project.class);
 
-            try (InitScript initScript = new InitScript(configuration.getInitScriptPath())) {
-                modelBuilder.withArguments("--init-script", initScript.getAbsolutePath());
-                return modelBuilder.get();
+                try (InitScript initScript = new InitScript(configuration.getInitScriptPath())) {
+                    modelBuilder.withArguments("--init-script", initScript.getAbsolutePath());
+                    return modelBuilder.get();
+                }
+            } finally {
+                connector.disconnect();
             }
-        } finally {
-            connector.disconnect();
+        } catch (Exception exception) {
+            throw new GradleUtilitiesException(exception);
         }
     }
 

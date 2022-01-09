@@ -26,6 +26,7 @@ package com.github.gregoranders.idea.gradle.dependencies.tooling.model;
 import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration;
 import com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project;
 
+import java.io.Serial;
 import java.util.List;
 
 public record DefaultProject(String name,
@@ -33,4 +34,6 @@ public record DefaultProject(String name,
                              String version,
                              String path,
                              List<Configuration> configurations) implements Project {
+    @Serial
+    private static final long serialVersionUID = -1L;
 }
