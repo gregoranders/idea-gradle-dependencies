@@ -39,11 +39,12 @@ import spock.lang.*
 @See([
     'https://gradle.org',
     'https://github.com/bmuschko/tooling-api-custom-model',
+    'https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/api/Project.java',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultProject.java'
 ])
 @Issue([
-    '5', '17', '22'
+    '5', '17', '22', '24'
 ])
 class DefaultProjectSpec extends Specification {
 
@@ -54,6 +55,8 @@ class DefaultProjectSpec extends Specification {
     final String dependencyVersion = 'testVersion'
 
     final String configurationName = 'testConfiguration'
+
+    final String projectGroup = 'testProjectGroup'
 
     final String projectName = 'testProjectName'
 
@@ -67,10 +70,16 @@ class DefaultProjectSpec extends Specification {
 
     Configuration configuration = new DefaultConfiguration(configurationName, Set.of(dependency))
 
-    Project subProject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of())
+    Project subProject = new DefaultProject(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of())
 
     @Subject
-    Project testSubject = new DefaultProject(projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of(subProject))
+    Project testSubject = new DefaultProject(projectGroup, projectName, projectDescription, projectVersion, projectPath, Set.of(configuration), Set.of(subProject))
+
+    @Issue('24')
+    def 'should return expected project group'() {
+        expect: 'name to equal "testProjectGroup"'
+            testSubject.group() == projectGroup
+    }
 
     def 'should return expected project name'() {
         expect: 'name to equal "testProjectName"'

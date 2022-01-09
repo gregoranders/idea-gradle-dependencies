@@ -55,10 +55,14 @@ public final class DependenciesModelBuilder implements ToolingModelBuilder {
         return projectVersion.toString();
     }
 
+    private String getGroup(final Object projectGroup) {
+        return projectGroup.toString();
+    }
+
     private com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project mapProject(final Project project) {
         final ConfigurationContainer configurations = project.getConfigurations();
 
-        return new DefaultProject(project.getName(), project.getDescription(), getVersion(project.getVersion()),
+        return new DefaultProject(getGroup(project.getGroup()), project.getName(), project.getDescription(), getVersion(project.getVersion()),
             project.getPath(), mapConfigurations(configurations), mapSubProjects(project.getSubprojects()));
     }
 

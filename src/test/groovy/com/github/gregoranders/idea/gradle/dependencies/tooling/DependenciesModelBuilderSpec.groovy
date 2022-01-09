@@ -47,7 +47,7 @@ import java.util.stream.Stream
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/DependenciesModelBuilder.java'
 ])
 @Issue([
-    '5', '17', '22'
+    '5', '17', '22', '24'
 ])
 class DependenciesModelBuilderSpec extends Specification {
 
@@ -88,6 +88,7 @@ class DependenciesModelBuilderSpec extends Specification {
                 1 * mockedConfiguration.getName() >> 'testConfigurationName'
                 1 * mockedConfigurationsContainer.stream() >> Stream.of(mockedConfiguration)
                 1 * mockedProject.getConfigurations() >> mockedConfigurationsContainer
+                1 * mockedProject.getGroup() >> 'testProjectGroup'
                 1 * mockedProject.getName() >> 'testProjectName'
                 1 * mockedProject.getDescription() >> 'testProjectDescription'
                 1 * mockedProject.getVersion() >> 'testProjectVersion'
@@ -96,6 +97,8 @@ class DependenciesModelBuilderSpec extends Specification {
             }
         and: 'a project model should be returned'
             project instanceof com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project
+        and: 'it should have the name set to "testProjectGroup"'
+            project.group() == 'testProjectGroup'
         and: 'it should have the name set to "testProjectName"'
             project.name() == 'testProjectName'
         and: 'it should have the description set to "testProjectDescription"'

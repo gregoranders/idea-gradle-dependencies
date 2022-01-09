@@ -1,0 +1,19 @@
+//file:noinspection GrPackage
+
+plugins {
+  id 'java'
+  id 'java-library'
+}
+
+dependencies {
+
+  implementation(
+    project(':impl'),
+
+    [group: 'org.slf4j', name: 'slf4j-api', version: property('slf4jVersion')],
+  )
+
+  testImplementation(
+    [group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: property('junitVersion')],
+  )
+}

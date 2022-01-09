@@ -37,6 +37,7 @@ import spock.lang.*
 @See([
     'https://gradle.org',
     'https://github.com/bmuschko/tooling-api-custom-model',
+    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/api/Dependency.java',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/model/DefaultDependency.java'
 ])
