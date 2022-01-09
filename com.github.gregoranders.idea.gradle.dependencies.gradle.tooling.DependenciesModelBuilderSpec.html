@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=c461ebb16ec3c3abc0d7ccbb870113547a7d226d">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=285a8293cbe74ac7aedad1a140e7f14c0b070b76">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -26,20 +26,20 @@
 
 
 <!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec | JetBrains IntelliJ Gradle Dependencies Plugin</title>
+<title>com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec | JetBrains IntelliJ Gradle Dependencies Plugin</title>
 <meta name="generator" content="Jekyll v3.9.0" />
-<meta property="og:title" content="com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec" />
+<meta property="og:title" content="com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec" />
 <meta name="author" content="Gregor Anders" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Specification run results" />
 <meta property="og:description" content="Specification run results" />
-<link rel="canonical" href="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec.html" />
-<meta property="og:url" content="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec.html" />
+<link rel="canonical" href="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec.html" />
+<meta property="og:url" content="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec.html" />
 <meta property="og:site_name" content="JetBrains IntelliJ Gradle Dependencies Plugin" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec" />
+<meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec" />
 <script type="application/ld+json">
-{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilderSpec","description":"Specification run results","@context":"https://schema.org"}</script>
+{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilderSpec","description":"Specification run results","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -85,14 +85,14 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.133 seconds</td>
+      <td>0.205 seconds</td>
     </tr>
   </tbody>
 </table>
 
 <h4 id="testsubject">TestSubject:</h4>
 <ul>
-  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/DependenciesModelBuilder.java">com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilder</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/DependenciesModelBuilder.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilder</a></li>
 </ul>
 
 <h4 id="issues">Issues:</h4>
@@ -110,20 +110,20 @@
   <li><a href="https://gradle.org">https://gradle.org</a></li>
   <li><a href="https://github.com/bmuschko/tooling-api-custom-model">https://github.com/bmuschko/tooling-api-custom-model</a></li>
   <li><a href="https://docs.gradle.org/current/javadoc/org/gradle/tooling/provider/model/ToolingModelBuilder.html">https://docs.gradle.org/current/javadoc/org/gradle/tooling/provider/model/ToolingModelBuilder.html</a></li>
-  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/tooling/DependenciesModelBuilder.java">com.github.gregoranders.idea.gradle.dependencies.tooling.DependenciesModelBuilder</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/DependenciesModelBuilder.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesModelBuilder</a></li>
 </ul>
 
 <h2 id="features">Features</h2>
 <ul>
-  <li><a href="#should-return-true-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.project-as-the-modelname">should return true when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project as the modelName</a></li>
-  <li><a href="#should-return-false-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.configuration-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration as the modelName</a></li>
-  <li><a href="#should-return-false-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.dependency-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency as the modelName</a></li>
+  <li><a href="#should-return-true-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.project-as-the-modelname">should return true when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project as the modelName</a></li>
+  <li><a href="#should-return-false-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.configuration-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration as the modelName</a></li>
+  <li><a href="#should-return-false-when-invoked-with-com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.dependency-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency as the modelName</a></li>
   <li><a href="#should-return-project-model">should return project model</a></li>
 </ul>
 
 <hr />
 
-<h1 id="should-return-true-when-invoked-with-comgithubgregorandersideagradledependenciestoolingmodelapiproject-as-the-modelname">should return true when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project as the modelName</h1>
+<h1 id="should-return-true-when-invoked-with-comgithubgregorandersideagradledependenciesgradletoolingmodelapiproject-as-the-modelname">should return true when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project as the modelName</h1>
 
 <p>Result: <strong>PASS</strong>
 Time: 0</p>
@@ -150,7 +150,7 @@ Time: 0</p>
   </thead>
   <tbody>
     <tr>
-      <td>com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Project</td>
+      <td>com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project</td>
       <td>true</td>
       <td>0</td>
       <td>(PASS)</td>
@@ -158,7 +158,7 @@ Time: 0</p>
   </tbody>
 </table>
 
-<h1 id="should-return-false-when-invoked-with-comgithubgregorandersideagradledependenciestoolingmodelapiconfiguration-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration as the modelName</h1>
+<h1 id="should-return-false-when-invoked-with-comgithubgregorandersideagradledependenciesgradletoolingmodelapiconfiguration-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration as the modelName</h1>
 
 <p>Result: <strong>PASS</strong>
 Time: 0</p>
@@ -185,7 +185,7 @@ Time: 0</p>
   </thead>
   <tbody>
     <tr>
-      <td>com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Configuration</td>
+      <td>com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration</td>
       <td>false</td>
       <td>0</td>
       <td>(PASS)</td>
@@ -193,7 +193,7 @@ Time: 0</p>
   </tbody>
 </table>
 
-<h1 id="should-return-false-when-invoked-with-comgithubgregorandersideagradledependenciestoolingmodelapidependency-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency as the modelName</h1>
+<h1 id="should-return-false-when-invoked-with-comgithubgregorandersideagradledependenciesgradletoolingmodelapidependency-as-the-modelname">should return false when invoked with com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency as the modelName</h1>
 
 <p>Result: <strong>PASS</strong>
 Time: 0</p>
@@ -220,7 +220,7 @@ Time: 0</p>
   </thead>
   <tbody>
     <tr>
-      <td>com.github.gregoranders.idea.gradle.dependencies.tooling.model.api.Dependency</td>
+      <td>com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency</td>
       <td>false</td>
       <td>0</td>
       <td>(PASS)</td>
@@ -231,7 +231,7 @@ Time: 0</p>
 <h1 id="should-return-project-model">should return project model</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.085 seconds</p>
+Time: 0.139 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a mocked Project</li>
@@ -272,7 +272,7 @@ Time: 0.085 seconds</p>
   <li><strong>When</strong> buildAll is invoked on the unit under test with the mocked project as a parameter</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">project</span> <span class="o">=</span> <span class="o">(</span><span class="n">testSubject</span><span class="o">.</span><span class="na">buildAll</span><span class="o">(</span><span class="s1">'test'</span><span class="o">,</span> <span class="n">mockedProject</span><span class="o">)</span> <span class="k">as</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Project</span><span class="o">)</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">project</span> <span class="o">=</span> <span class="o">(</span><span class="n">testSubject</span><span class="o">.</span><span class="na">buildAll</span><span class="o">(</span><span class="s1">'test'</span><span class="o">,</span> <span class="n">mockedProject</span><span class="o">)</span> <span class="k">as</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Project</span><span class="o">)</span>
 </code></pre></div></div>
 
 <ul>
@@ -301,7 +301,7 @@ Time: 0.085 seconds</p>
   <li><strong>And</strong> a project model should be returned</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span> <span class="k">instanceof</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Project</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">project</span> <span class="k">instanceof</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Project</span>
 </code></pre></div></div>
 
 <ul>

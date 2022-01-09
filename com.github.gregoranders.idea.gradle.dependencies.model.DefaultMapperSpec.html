@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=285a8293cbe74ac7aedad1a140e7f14c0b070b76">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/idea-gradle-dependencies/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec | JetBrains IntelliJ Gradle Dependencies Plugin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec" />
+<meta name="author" content="Gregor Anders" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Specification run results" />
+<meta property="og:description" content="Specification run results" />
+<link rel="canonical" href="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec.html" />
+<meta property="og:url" content="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec.html" />
+<meta property="og:site_name" content="JetBrains IntelliJ Gradle Dependencies Plugin" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapperSpec","description":"Specification run results","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/idea-gradle-dependencies/">
+          <h1>JetBrains IntelliJ Gradle Dependencies Plugin</h1>
+        </a>
+        <h2>Specification run results</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/gregoranders/idea-gradle-dependencies" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1 id="default-mapper">Default mapper</h1>
+<blockquote>
+  <h1 id="as-a-user-i-would-like-to-be-able-to-map-the-gradle-model-into-the-application-model-to-be-able-to-differentiate-between-subprojects-as-dependencies-an-external-dependencies">As a user I would like to be able to map the gradle model into the application model to be able to differentiate between subprojects as dependencies an ‘external’ dependencies.</h1>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Total Runs</th>
+      <th>Success Rate</th>
+      <th>Failures</th>
+      <th>Errors</th>
+      <th>Skipped</th>
+      <th>Total time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>100.0%</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.029 seconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="testsubject">TestSubject:</h4>
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/model/DefaultMapper.java">com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapper</a></li>
+  <li><strong>com.github.gregoranders.idea.gradle.dependencies.model.api.Mapper</strong></li>
+</ul>
+
+<h4 id="issues">Issues:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/28">#28</a></li>
+</ul>
+
+<h4 id="see">See:</h4>
+
+<ul>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/model/Mapper.java">com.github.gregoranders.idea.gradle.dependencies.model.Mapper</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/model/DefaultMapper.java">com.github.gregoranders.idea.gradle.dependencies.model.DefaultMapper</a></li>
+</ul>
+
+<h2 id="features">Features</h2>
+<ul>
+  <li><a href="#should-returned-mapped-model">should returned mapped model</a></li>
+</ul>
+
+<hr />
+
+<h1 id="should-returned-mapped-model">should returned mapped model</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.025 seconds</p>
+
+<ul>
+  <li><strong>Given</strong> a project with a subproject as a dependency</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Dependency</span> <span class="n">subDependency</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultDependency</span><span class="o">(</span><span class="s1">'subDependencyGroup'</span><span class="o">,</span> <span class="s1">'subDependencyName'</span><span class="o">,</span> <span class="s1">'subDependencyVersion'</span><span class="o">)</span>
+<span class="n">Configuration</span> <span class="n">subConfiguration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultConfiguration</span><span class="o">(</span><span class="s1">'subConfigurationName'</span><span class="o">,</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">subDependency</span><span class="o">))</span>
+<span class="n">Project</span> <span class="n">subProject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultProject</span><span class="o">(</span><span class="s1">'subProjectGroup'</span><span class="o">,</span> <span class="s1">'subProjectName'</span><span class="o">,</span> <span class="s1">'subProjectDescription'</span><span class="o">,</span> <span class="s1">'subProjectVersion'</span><span class="o">,</span> <span class="s1">'subProjectPath'</span><span class="o">,</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">subConfiguration</span><span class="o">),</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">())</span>
+<span class="n">Dependency</span> <span class="n">dependencySub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultDependency</span><span class="o">(</span><span class="s1">'subProjectGroup'</span><span class="o">,</span> <span class="s1">'subProjectName'</span><span class="o">,</span> <span class="s1">'subProjectVersion'</span><span class="o">)</span>
+<span class="n">Dependency</span> <span class="n">dependencyOne</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultDependency</span><span class="o">(</span><span class="s1">'subProjectGroup'</span><span class="o">,</span> <span class="s1">'subProjectName'</span><span class="o">,</span> <span class="s1">'dependencyVersion'</span><span class="o">)</span>
+<span class="n">Dependency</span> <span class="n">dependencyTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultDependency</span><span class="o">(</span><span class="s1">'subProjectGroup'</span><span class="o">,</span> <span class="s1">'dependencyName'</span><span class="o">,</span> <span class="s1">'dependencyVersion'</span><span class="o">)</span>
+<span class="n">Dependency</span> <span class="n">dependencyThree</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultDependency</span><span class="o">(</span><span class="s1">'dependencyGroup'</span><span class="o">,</span> <span class="s1">'dependencyName'</span><span class="o">,</span> <span class="s1">'dependencyVersion'</span><span class="o">)</span>
+<span class="n">Configuration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultConfiguration</span><span class="o">(</span><span class="s1">'configurationName'</span><span class="o">,</span> <span class="k">new</span> <span class="n">LinkedHashSet</span><span class="o">([</span><span class="n">dependencySub</span><span class="o">,</span> <span class="n">dependencyOne</span><span class="o">,</span> <span class="n">dependencyTwo</span><span class="o">,</span> <span class="n">dependencyThree</span><span class="o">]))</span>
+<span class="n">Project</span> <span class="n">project</span> <span class="o">=</span> <span class="k">new</span> <span class="n">com</span><span class="o">.</span><span class="na">github</span><span class="o">.</span><span class="na">gregoranders</span><span class="o">.</span><span class="na">idea</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">dependencies</span><span class="o">.</span><span class="na">gradle</span><span class="o">.</span><span class="na">tooling</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">DefaultProject</span><span class="o">(</span><span class="s1">'projectGroup'</span><span class="o">,</span> <span class="s1">'projectName'</span><span class="o">,</span> <span class="s1">'projectDescription'</span><span class="o">,</span> <span class="s1">'projectVersion'</span><span class="o">,</span> <span class="s1">'projectPath'</span><span class="o">,</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">configuration</span><span class="o">),</span> <span class="n">Set</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">subProject</span><span class="o">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>When</strong> the unit under test maps this project</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">def</span> <span class="n">mappedProject</span> <span class="o">=</span> <span class="n">testSubject</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">project</span><span class="o">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Then</strong> the project should match the expectations</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mappedProject</span><span class="o">.</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'projectGroup'</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'projectName'</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">description</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'projectDescription'</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'projectVersion'</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">path</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'projectPath'</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">subProjects</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">mappedProject</span><span class="o">.</span><span class="na">configurations</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'configurationName'</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the mapped subProject dependency should be marked as a subProject dependency and match the expected values</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mappedProject</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">config</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">group</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'subProjectGroup'</span>
+    <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">name</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'subProjectName'</span>
+    <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">version</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'subProjectVersion'</span>
+    <span class="k">assert</span> <span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">0</span><span class="o">].</span><span class="na">isSubProject</span><span class="o">()</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> the other dependencies should not</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mappedProject</span><span class="o">.</span><span class="na">configurations</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">config</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">assert</span> <span class="o">!</span><span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">1</span><span class="o">].</span><span class="na">isSubProject</span><span class="o">()</span>
+    <span class="k">assert</span> <span class="o">!</span><span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">2</span><span class="o">].</span><span class="na">isSubProject</span><span class="o">()</span>
+    <span class="k">assert</span> <span class="o">!</span><span class="n">config</span><span class="o">.</span><span class="na">dependencies</span><span class="o">()[</span><span class="mi">3</span><span class="o">].</span><span class="na">isSubProject</span><span class="o">()</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>And</strong> no exceptions should be thrown</li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">noExceptionThrown</span><span class="o">()</span>
+</code></pre></div></div>
+
+
+      </section>
+    </div>
+  </body>
+</html>
