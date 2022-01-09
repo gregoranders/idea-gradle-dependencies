@@ -59,7 +59,7 @@ public final class InitScript implements AutoCloseable {
 
     public String getAbsolutePath() throws URISyntaxException, IOException {
         final Path path = getTemporaryInitScriptPath();
-        return FilenameUtils.separatorsToSystem(getAbsolutePathAsString(path));
+        return FilenameUtils.separatorsToUnix(getAbsolutePathAsString(path));
     }
 
     private Path getTemporaryInitScriptPath() throws URISyntaxException, IOException {
