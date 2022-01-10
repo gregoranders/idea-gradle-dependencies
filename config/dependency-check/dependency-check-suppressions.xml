@@ -38,4 +38,16 @@
     <cve>CVE-2020-10518</cve>
     <cve>CVE-2020-10519</cve>
   </suppress>
+  <suppress>
+    <notes><![CDATA[
+   file name: ant-apache-log4j.jar
+   Not used. Pulled in by IntelliJ.
+   ]]></notes>
+    <packageUrl regex="true">^pkg:maven/com\.jetbrains/ideaIC@.*$</packageUrl>
+    <cpe>cpe:/a:apache:ant</cpe>
+    <cpe>cpe:/a:apache:log4j</cpe>
+    <cve>CVE-2020-1945</cve>
+    <cve>CVE-2021-36373</cve>
+    <cve>CVE-2021-36374</cve>
+  </suppress>
 </suppressions>
