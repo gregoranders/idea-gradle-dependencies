@@ -113,7 +113,7 @@ public final class InitScriptInjector implements AutoCloseable {
         final String base = url.substring(0, url.length() - suffix.length());
         final String path = FileUtilities.removeLeadingJar(FileUtilities.removeLeadingFile(base));
 
-        return Path.of(path);
+        return Path.of(FileUtilities.removeLeadingJar(FileUtilities.removeLeadingFile(path)));
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")

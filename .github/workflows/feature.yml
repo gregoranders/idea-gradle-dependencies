@@ -73,6 +73,7 @@ jobs:
         with:
           arguments: --info --stacktrace sonarqube
       - name: Upload reports as an artifact
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
