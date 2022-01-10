@@ -85,7 +85,7 @@ jobs:
         with:
           name: junit-results
           path: build/test-results
-          retention-days: 2
+          retention-days: 1
 
   publish-test-results:
     runs-on: ${{ matrix.os }}
