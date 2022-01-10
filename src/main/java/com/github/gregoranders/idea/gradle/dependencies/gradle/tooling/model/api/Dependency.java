@@ -23,12 +23,22 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api;
 
+import org.immutables.value.Value;
+
+import javax.annotation.Nullable;
 import java.io.Serializable;
 
+@Value.Immutable
 public interface Dependency extends Serializable {
+
+    @Value.Parameter(order = 1)
+    @Nullable
     String group();
 
+    @Value.Parameter(order = 2)
     String name();
 
+    @Value.Parameter(order = 3)
+    @Nullable
     String version();
 }

@@ -23,20 +23,31 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.model.api;
 
+import org.immutables.value.Value;
+
 import java.util.Set;
 
+@Value.Immutable
 public interface Project {
+
+    @Value.Parameter(order = 1)
     String group();
 
+    @Value.Parameter(order = 2)
     String name();
 
+    @Value.Parameter(order = 3)
     String description();
 
+    @Value.Parameter(order = 4)
     String version();
 
+    @Value.Parameter(order = 5)
     String path();
 
+    @Value.Parameter(order = 6)
     Set<Configuration> configurations();
 
+    @Value.Parameter(order = 7)
     Set<Project> subProjects();
 }

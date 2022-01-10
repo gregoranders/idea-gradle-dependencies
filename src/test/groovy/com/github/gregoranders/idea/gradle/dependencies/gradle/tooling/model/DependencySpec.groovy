@@ -21,11 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration
 import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableDependency
 import spock.lang.*
 
 @Narrative('''
@@ -34,46 +33,39 @@ import spock.lang.*
 [gradle-url]: https://gradle.org
 [model-url]: https://github.com/bmuschko/tooling-api-custom-model
 ''')
-@Subject([DefaultConfiguration, Configuration])
+@Subject([Dependency])
 @See([
     'https://gradle.org',
     'https://github.com/bmuschko/tooling-api-custom-model',
-    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Configuration.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/DefaultConfiguration.java'
+    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java',
 ])
 @Issue([
-    '5', '22'
+    '5', '30'
 ])
-class DefaultConfigurationSpec extends Specification {
+class DependencySpec extends Specification {
 
-    final String dependencyGroup = 'testGroup'
+    final String group = 'testGroup'
 
-    final String dependencyName = 'testName'
+    final String name = 'testName'
 
-    final String dependencyVersion = 'testVersion'
-
-    final String configurationName = 'testConfiguration'
-
-    Dependency dependency = new DefaultDependency(dependencyGroup, dependencyName, dependencyVersion)
+    final String version = 'testVersion'
 
     @Subject
-    Configuration testSubject = new DefaultConfiguration(configurationName, Set.of(dependency))
+    Dependency testSubject = ImmutableDependency.of(group, name, version)
 
-    def 'should return expected configuration name'() {
-        expect: 'name to equal "testConfiguration"'
-            testSubject.name() == configurationName
+    def 'should return expected group'() {
+        expect: 'group to equal "testGroup"'
+            testSubject.group() == group
     }
 
-    @Issue('22')
-    def 'should return a set with one dependency'() {
-        expect: 'set of dependencies should have one element'
-            testSubject.dependencies().size() == 1
+    def 'should return expected name'() {
+        expect: 'name to equal "testName"'
+            testSubject.name() == name
     }
 
-    @Issue('22')
-    def 'should contain expected dependency'() {
-        expect: 'should equal provided dependency'
-            testSubject.dependencies()[0] == dependency
+    def 'should return expected version'() {
+        expect: 'version to equal "testVersion"'
+            testSubject.version() == version
     }
 }
