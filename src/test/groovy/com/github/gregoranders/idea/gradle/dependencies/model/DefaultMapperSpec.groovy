@@ -68,18 +68,18 @@ class DefaultMapperSpec extends Specification {
             mappedProject.configurations().size() == 1
             mappedProject.configurations()[0].name() == 'configurationName'
         and: 'the mapped subProject dependency should be marked as a subProject dependency and match the expected values'
-            mappedProject.configurations().forEach(config -> {
+            mappedProject.configurations().each { config ->
                 assert config.dependencies()[0].group() == 'subProjectGroup'
                 assert config.dependencies()[0].name() == 'subProjectName'
                 assert config.dependencies()[0].version() == 'subProjectVersion'
                 assert config.dependencies()[0].isSubProject()
-            })
+            }
         and: 'the other dependencies should not'
-            mappedProject.configurations().forEach(config -> {
+            mappedProject.configurations().each { config ->
                 assert !config.dependencies()[1].isSubProject()
                 assert !config.dependencies()[2].isSubProject()
                 assert !config.dependencies()[3].isSubProject()
-            })
+            }
         and: 'no exceptions should be thrown'
             noExceptionThrown()
     }
