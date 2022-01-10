@@ -79,3 +79,25 @@ jobs:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
           path: build/reports
           retention-days: 2
+
+  publish-test-results:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ '11.0.13' ]
+      fail-fast: false
+    name: "Publish Unit Tests Results"
+    needs: build
+    if: always()
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
+          path: artifact
+      - name: Publish Unit Test Results
+        run: |
+          ls -R
+          ls -R artifact
