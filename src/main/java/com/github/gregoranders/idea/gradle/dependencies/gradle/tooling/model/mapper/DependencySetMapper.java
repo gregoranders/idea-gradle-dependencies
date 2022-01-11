@@ -21,29 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
+package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
-import org.gradle.api.NonNullApi;
-import org.gradle.api.Project;
-import org.gradle.tooling.provider.model.ToolingModelBuilder;
+import org.gradle.api.artifacts.DependencySet;
 
-@NonNullApi
-public final class DependenciesModelBuilder implements ToolingModelBuilder {
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-    private final ProjectMapper projectMapper;
+public final class DependencySetMapper
+    extends BasicMapper<DependencySet, Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency>> {
 
-    public DependenciesModelBuilder(final ProjectMapper mapper) {
-        projectMapper = mapper;
+    private final DependencyMapper dependencyMapper;
+
+    public DependencySetMapper(final DependencyMapper mapper) {
+        super();
+        dependencyMapper = mapper;
     }
 
+    @SuppressWarnings("PMD.LawOfDemeter")
     @Override
-    public boolean canBuild(final String modelName) {
-        return modelName.equals(com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project.class.getName());
-    }
-
-    @Override
-    public Object buildAll(final String modelName, final Project project) {
-        return projectMapper.map(project);
+    public Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency> map(final DependencySet dependencies) {
+        return dependencies
+            .stream()
+            .map(dependencyMapper::map)
+            .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }

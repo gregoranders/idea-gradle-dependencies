@@ -21,29 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
-
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
-import org.gradle.api.NonNullApi;
-import org.gradle.api.Project;
-import org.gradle.tooling.provider.model.ToolingModelBuilder;
-
-@NonNullApi
-public final class DependenciesModelBuilder implements ToolingModelBuilder {
-
-    private final ProjectMapper projectMapper;
-
-    public DependenciesModelBuilder(final ProjectMapper mapper) {
-        projectMapper = mapper;
-    }
-
-    @Override
-    public boolean canBuild(final String modelName) {
-        return modelName.equals(com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project.class.getName());
-    }
-
-    @Override
-    public Object buildAll(final String modelName, final Project project) {
-        return projectMapper.map(project);
-    }
-}
+package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;

@@ -21,29 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
+package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
-import org.gradle.api.NonNullApi;
-import org.gradle.api.Project;
-import org.gradle.tooling.provider.model.ToolingModelBuilder;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project
+import spock.lang.Specification
 
-@NonNullApi
-public final class DependenciesModelBuilder implements ToolingModelBuilder {
+class MapperSpecification extends Specification {
 
-    private final ProjectMapper projectMapper;
-
-    public DependenciesModelBuilder(final ProjectMapper mapper) {
-        projectMapper = mapper;
+    void verifyProject(Project project, String group, String name, String description, String version, String path) {
+        verifyAll(project) {
+            it.group() == group
+            it.name() == name
+            it.description() == description
+            it.version() == version
+            it.path() == path
+        }
     }
 
-    @Override
-    public boolean canBuild(final String modelName) {
-        return modelName.equals(com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project.class.getName());
-    }
-
-    @Override
-    public Object buildAll(final String modelName, final Project project) {
-        return projectMapper.map(project);
+    void verifyDependency(Dependency dependency, String group, String name, String version) {
+        verifyAll(dependency) {
+            it.group() == group
+            it.name() == name
+            it.version() == version
+        }
     }
 }
