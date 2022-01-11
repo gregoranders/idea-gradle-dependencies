@@ -21,29 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
+package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
-import org.gradle.api.NonNullApi;
-import org.gradle.api.Project;
-import org.gradle.tooling.provider.model.ToolingModelBuilder;
+import org.gradle.api.artifacts.ConfigurationContainer;
 
-@NonNullApi
-public final class DependenciesModelBuilder implements ToolingModelBuilder {
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-    private final ProjectMapper projectMapper;
+public final class ConfigurationContainerMapper
+    extends BasicMapper<ConfigurationContainer, Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration>> {
 
-    public DependenciesModelBuilder(final ProjectMapper mapper) {
-        projectMapper = mapper;
+    private final ConfigurationMapper configurationMapper;
+
+    public ConfigurationContainerMapper(final ConfigurationMapper mapper) {
+        super();
+        configurationMapper = mapper;
     }
 
+    @SuppressWarnings("PMD.LawOfDemeter")
     @Override
-    public boolean canBuild(final String modelName) {
-        return modelName.equals(com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project.class.getName());
-    }
-
-    @Override
-    public Object buildAll(final String modelName, final Project project) {
-        return projectMapper.map(project);
+    public Set<com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration> map(
+        final ConfigurationContainer configurationContainer) {
+        return configurationContainer
+            .stream()
+            .map(configurationMapper::map)
+            .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 }

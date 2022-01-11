@@ -21,29 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
+package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
-import org.gradle.api.NonNullApi;
-import org.gradle.api.Project;
-import org.gradle.tooling.provider.model.ToolingModelBuilder;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableConfiguration;
+import org.gradle.api.artifacts.Configuration;
 
-@NonNullApi
-public final class DependenciesModelBuilder implements ToolingModelBuilder {
+public final class ConfigurationMapper
+    extends BasicMapper<Configuration, com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration> {
 
-    private final ProjectMapper projectMapper;
+    private final DependencySetMapper dependencySetMapper;
 
-    public DependenciesModelBuilder(final ProjectMapper mapper) {
-        projectMapper = mapper;
+    public ConfigurationMapper(final DependencySetMapper mapper) {
+        super();
+        dependencySetMapper = mapper;
     }
 
     @Override
-    public boolean canBuild(final String modelName) {
-        return modelName.equals(com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project.class.getName());
-    }
-
-    @Override
-    public Object buildAll(final String modelName, final Project project) {
-        return projectMapper.map(project);
+    public com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration map(final Configuration configuration) {
+        return ImmutableConfiguration.of(
+            configuration.getName(),
+            dependencySetMapper.map(configuration.getDependencies())
+        );
     }
 }
