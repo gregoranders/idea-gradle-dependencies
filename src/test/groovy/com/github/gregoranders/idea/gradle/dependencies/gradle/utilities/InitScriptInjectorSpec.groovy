@@ -107,15 +107,13 @@ class InitScriptInjectorSpec extends Specification {
         when: 'a temporary init scrip is requested'
             testSubject.getAbsolutePath()
         then: 'an exception should be thrown'
-            NullPointerException exception = thrown()
-        and: 'the message of the exception should be "Resource not found /test"'
-            exception.getMessage() == 'Resource not found /test.gradle'
+            thrown(NullPointerException)
     }
 
     def checkPluginPath(List<String> lines) {
         boolean found = false
         lines.forEach(line -> {
-            if (line.contains(FilenameUtils.separatorsToUnix("/build/classes/java/main')"))) {
+            if (line.contains(FilenameUtils.separatorsToUnix("/build/classes/java/main/')"))) {
                 found = true
             }
         })

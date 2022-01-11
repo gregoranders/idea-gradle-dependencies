@@ -27,14 +27,14 @@ import org.gradle.internal.impldep.org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.CodeSource;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public final class InitScriptInjector implements AutoCloseable {
 
@@ -56,23 +56,21 @@ public final class InitScriptInjector implements AutoCloseable {
         }
     }
 
-    public String getAbsolutePath() throws URISyntaxException, IOException {
-        final Path path = getTemporaryInitScriptPath();
-        return getAbsolutePathAsString(path);
+    public String getAbsolutePath() throws IOException {
+        return getTemporaryInitScriptPath();
     }
 
-    private Path getTemporaryInitScriptPath() throws URISyntaxException, IOException {
+    private String getTemporaryInitScriptPath() throws IOException {
         return createTemporaryInitScript(getPluginPath(), initScriptPath);
     }
 
-    private Path createTemporaryInitScript(final Path pluginPath, final String path) throws IOException, URISyntaxException {
-        final Path scriptPath = getInitScriptPath(path);
+    private String createTemporaryInitScript(final String pluginPath, final String path) throws IOException {
         temporaryScriptPath = createSecureTempFile();
 
-        final List<String> lines = Files.readAllLines(scriptPath, StandardCharsets.UTF_8);
+        final List<String> lines = splitStringIntoLines(FileUtilities.getResourceAsString(getClass(), path));
         final String initScriptContent = getInitScriptContentWithReplacedPluginPath(pluginPath, lines);
 
-        return Files.writeString(temporaryScriptPath, initScriptContent, StandardCharsets.UTF_8);
+        return FileUtilities.getAbsolutePathAsString(Files.writeString(temporaryScriptPath, initScriptContent, StandardCharsets.UTF_8));
     }
 
     @SuppressWarnings({"PMD.LawOfDemeter", "java:S5443"})
@@ -89,11 +87,11 @@ public final class InitScriptInjector implements AutoCloseable {
         file.setExecutable(false, true);
     }
 
-    private String getInitScriptContentWithReplacedPluginPath(final Path pluginPath, final List<String> lines) {
+    private String getInitScriptContentWithReplacedPluginPath(final String pluginPath, final List<String> lines) {
         final StringBuilder stringBuilder = new StringBuilder();
         lines.forEach(line -> {
             final String replaced = replaceLine(line, "%%GRADLE_DEPENDENCIES_PLUGIN_PATH%%",
-                FilenameUtils.separatorsToUnix(getAbsolutePathAsString(pluginPath)));
+                FilenameUtils.separatorsToUnix(pluginPath));
             stringBuilder.append(replaceLine(replaced, "%%GRADLE_DEPENDENCIES_PLUGIN%%", pluginName));
             stringBuilder.append(System.lineSeparator());
         });
@@ -106,34 +104,21 @@ public final class InitScriptInjector implements AutoCloseable {
     }
 
     @SuppressWarnings("PMD.LawOfDemeter")
-    private Path getPluginPath() throws URISyntaxException {
-        final CodeSource codeSource = getClass().getProtectionDomain().getCodeSource();
-        return Path.of(codeSource.getLocation().toURI());
+    private String getPluginPath() {
+        final Class<? extends InitScriptInjector> aClass = getClass();
+        final URL resource = aClass.getResource(aClass.getSimpleName() + ".class");
+        final String url = Objects.requireNonNull(resource, "Class resource not found").toString();
+        final String suffix = aClass.getCanonicalName().replace('.', '/') + ".class";
+        final String base = url.substring(0, url.length() - suffix.length());
+        final String path = FileUtilities.removeLeadingJar(FileUtilities.removeLeadingFile(base));
+
+        return FileUtilities.removeLeadingJar(FileUtilities.removeLeadingFile(path));
     }
 
-    private Path getInitScriptPath(final String scriptPath) throws URISyntaxException {
-        final URL resource = getResource(getClass(), scriptPath);
-        Objects.requireNonNull(resource, String.format("Resource not found %s", scriptPath));
-        return getPathFromURL(resource);
-    }
-
-    private URL getResource(final Class<?> clazz, final String path) {
-        return clazz.getResource(path);
-    }
-
-    private Path getPathFromURL(final URL url) throws URISyntaxException {
-        return Path.of(url.toURI());
-    }
-
-    private String getAbsolutePathAsString(final Path path) {
-        return getPathAsString(getAbsolutePath(path));
-    }
-
-    private String getPathAsString(final Path path) {
-        return path.toString();
-    }
-
-    private Path getAbsolutePath(final Path path) {
-        return path.toAbsolutePath();
+    @SuppressWarnings("PMD.LawOfDemeter")
+    private List<String> splitStringIntoLines(final String string) {
+        return Arrays
+            .stream(string.split("\\r?\\n"))
+            .collect(Collectors.toList());
     }
 }

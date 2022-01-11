@@ -73,11 +73,19 @@ jobs:
         with:
           arguments: --info --stacktrace sonarqube
       - name: Upload reports as an artifact
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
           path: build/reports
           retention-days: 2
+      - name: Upload reports as an artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit-results
+          path: build/test-results
+          retention-days: 1
       - name: Get cached gems
         if: matrix.os == 'ubuntu-latest'
         uses: actions/cache@v2
@@ -105,3 +113,26 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/_gh-pages/_site
           enable_jekyll: false
+
+  publish-test-results:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [ '11.0.13' ]
+      fail-fast: false
+    name: "Publish Unit Tests Results"
+    needs: build
+    if: always()
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: junit-results
+          path: artifact
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: artifact/**/*.xml
