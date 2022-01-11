@@ -113,7 +113,7 @@ class InitScriptInjectorSpec extends Specification {
     def checkPluginPath(List<String> lines) {
         boolean found = false
         lines.each {line ->
-            if (line.contains(FilenameUtils.separatorsToUnix("/build/classes/java/main/')"))) {
+            if (line.contains(FilenameUtils.separatorsToUnix('/build/classes/java/'))) {
                 found = true
             }
         }

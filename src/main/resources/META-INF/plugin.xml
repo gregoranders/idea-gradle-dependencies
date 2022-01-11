@@ -1,0 +1,56 @@
+<idea-plugin>
+    <id>com.github.gregoranders.idea-gradle-dependencies</id>
+    <name>Gradle Dependencies Checker</name>
+    <vendor email="gregor.anders@gmail.com" url="https://github.com/gregoranders/idea-gradle-dependencies">Gregor Anders</vendor>
+
+    <description>
+      <![CDATA[
+        Checks dependencies of a <a href="https://gradle.org">Gradle</a> project for updates.
+
+        <br />
+        <br />
+
+        <p>
+          Uses an init-script injector to retrieve project information and does not rely on parsing any output. As such it
+          <i>should<b>&trade;<b></i> work with most configurations.
+        </p>
+
+        <h3>Supports</h3>
+        <ul>
+          <li>simple project layouts</li>
+          <li><a href="https://docs.gradle.org/current/userguide/intro_multi_project_builds.html">multi-project</a> layouts with nested subprojects</li>
+        </ul>
+
+        <br />
+
+        <a href="https://github.com/gregoranders/idea-gradle-dependencies">Homepage</a>
+        &nbsp;&nbsp;
+        <a href="https://github.com/gregoranders/idea-gradle-dependencies/issues/new?assignees=gregoranders&labels=bug&template=bug_report.md&title=">Report a bug</a>
+      ]]>
+    </description>
+
+    <change-notes>Initial release of the plugin.</change-notes>
+
+    <depends>com.intellij.java</depends>
+    <depends>com.intellij.gradle</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+      <toolWindow id="Gradle Dependencies"
+                  icon="/icons/toolWindow.svg"
+                  anchor="right"
+                  canCloseContents="true"
+                  doNotActivateOnStart="true"
+                  factoryClass="com.github.gregoranders.idea.gradle.dependencies.ui.DependenciesToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+      <action id="GradleDependenciesUpdateAction"
+              description="Checks dependencies of a Gradle project for updates."
+              icon="/icons/toolWindow.svg"
+              class="com.github.gregoranders.idea.gradle.dependencies.ui.DependenciesUpdateAction"
+              text="Checks Dependencies For Updates">
+        <add-to-group group-id="AnalyzeActions" anchor="last"/>
+      </action>
+    </actions>
+
+</idea-plugin>
