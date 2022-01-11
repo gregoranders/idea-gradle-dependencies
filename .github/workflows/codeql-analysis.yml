@@ -25,6 +25,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2.5.0
         with:
+          distribution: 'temurin'
+          cache: 'gradle'
           java-version: ${{ matrix.java }}
       - name: Echo JAVA_HOME
         run: echo $JAVA_HOME
