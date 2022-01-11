@@ -36,13 +36,13 @@ import java.util.stream.Stream
 [gradle-url]: https://gradle.org
 [project-url]: https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html
 [model-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Project.java
-[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/ProjectMapper.java
+[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/ProjectMapper.java
 ''')
 @Subject([ProjectMapper, Project])
 @See([
     'https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Project.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/ProjectMapper.java',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/ProjectMapper.java',
 ])
 @Issue([
     '40'

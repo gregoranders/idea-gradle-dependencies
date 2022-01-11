@@ -38,14 +38,14 @@ import java.util.stream.Stream
 [gradle-url]: https://gradle.org
 [dependencySet-url]: https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/DependencySet.html
 [model-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java
-[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencySetMapper.java
+[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencySetMapper.java
 ''')
 @Subject([DependencySetMapper, Dependency])
 @See([
     'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html',
     'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/DependencySet.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencySetMapper.java',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencySetMapper.java',
 ])
 @Issue([
     '40'

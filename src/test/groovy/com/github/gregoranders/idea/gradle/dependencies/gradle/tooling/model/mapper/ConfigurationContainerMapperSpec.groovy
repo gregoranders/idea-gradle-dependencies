@@ -39,14 +39,14 @@ import java.util.stream.Stream
 [gradle-url]: https://gradle.org
 [configurationContainer-url]: https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/ConfigurationContainer.html
 [model-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Configuration.java
-[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/ConfigurationContainerMapper.java
+[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/ConfigurationContainerMapper.java
 ''')
 @Subject([ConfigurationContainerMapper, Configuration])
 @See([
-    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html',
-    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/DependencySet.html',
+    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html',
+    'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/ConfigurationContainer.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Configuration.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/ConfigurationContainerMapper.java',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/ConfigurationContainerMapper.java',
 ])
 @Issue([
     '40'

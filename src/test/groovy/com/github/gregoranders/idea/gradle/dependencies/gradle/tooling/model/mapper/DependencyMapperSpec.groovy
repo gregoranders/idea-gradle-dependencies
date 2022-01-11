@@ -32,13 +32,13 @@ import spock.lang.*
 [gradle-url]: https://gradle.org
 [dependency-url]: https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html
 [model-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java
-[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencyMapper.java
+[mapper-url]: https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencyMapper.java
 ''')
 @Subject([DependencyMapper, Dependency])
 @See([
     'https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html',
     'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java',
-    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencyMapper.java',
+    'https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencyMapper.java',
 ])
 @Issue([
     '40'
