@@ -23,6 +23,7 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling
 
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.*
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ConfigurationContainer
@@ -51,15 +52,25 @@ import java.util.stream.Stream
 ])
 class DependenciesModelBuilderSpec extends Specification {
 
+    def dependencyMapper = new DependencyMapper()
+
+    def dependencySetMapper = new DependencySetMapper(dependencyMapper)
+
+    def configurationMapper = new ConfigurationMapper(dependencySetMapper)
+
+    def configurationContainerMapper = new ConfigurationContainerMapper(configurationMapper)
+
+    def projectMapper = new ProjectMapper(configurationContainerMapper)
+
     @Subject
-    DependenciesModelBuilder testSubject = new DependenciesModelBuilder()
+    def testSubject = new DependenciesModelBuilder(projectMapper)
 
     @Unroll
     def "should return #expectedResult when invoked with #modelName as the modelName"() {
         expect: 'should return appropriate result when invoked'
             testSubject.canBuild(modelName) == expectedResult
         where:
-            modelName                                                                          || expectedResult
+            modelName                                                                                 || expectedResult
             'com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project'       || true
             'com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration' || false
             'com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency'    || false

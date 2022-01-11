@@ -23,6 +23,11 @@
  */
 package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling;
 
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ConfigurationContainerMapper;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ConfigurationMapper;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.DependencyMapper;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.DependencySetMapper;
+import com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.ProjectMapper;
 import org.gradle.api.NonNullApi;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -33,6 +38,16 @@ import javax.inject.Inject;
 @NonNullApi
 public final class DependenciesPlugin implements Plugin<Project> {
 
+    private final DependencyMapper dependencyMapper = new DependencyMapper();
+
+    private final DependencySetMapper dependencySetMapper = new DependencySetMapper(dependencyMapper);
+
+    private final ConfigurationMapper configurationMapper = new ConfigurationMapper(dependencySetMapper);
+
+    private final ConfigurationContainerMapper configurationContainerMapper = new ConfigurationContainerMapper(configurationMapper);
+
+    private final ProjectMapper projectMapper = new ProjectMapper(configurationContainerMapper);
+
     private final ToolingModelBuilderRegistry toolingModelBuilderRegistry;
 
     @Inject
@@ -42,6 +57,6 @@ public final class DependenciesPlugin implements Plugin<Project> {
 
     @Override
     public void apply(final Project project) {
-        toolingModelBuilderRegistry.register(new DependenciesModelBuilder());
+        toolingModelBuilderRegistry.register(new DependenciesModelBuilder(projectMapper));
     }
 }
