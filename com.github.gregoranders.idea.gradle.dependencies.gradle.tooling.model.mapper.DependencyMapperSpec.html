@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=d876b5a3b3eef86b346ae746e4ac44091c0b1a02">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=6c99789ba3f85c18d4a89b08178f6a6b537d90b9">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -63,7 +63,7 @@
     <div class="container">
       <section id="main_content">
         <blockquote>
-  <h1 id="as-a-user-i-would-like-to-map-a-gradle-dependency-to-a-model-using-a-custom-mapper">As a user I would like to map a <a href="https://gradle.org">Gradle</a> <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html">dependency</a> to a <a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java">model</a> using a custom <a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencyMapper.java">mapper</a>.</h1>
+  <h1 id="as-a-user-i-would-like-to-map-a-gradle-dependency-to-a-model-using-a-custom-mapper">As a user I would like to map a <a href="https://gradle.org">Gradle</a> <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html">dependency</a> to a <a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java">model</a> using a custom <a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencyMapper.java">mapper</a>.</h1>
 </blockquote>
 
 <table>
@@ -84,14 +84,14 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.025 seconds</td>
+      <td>0.022 seconds</td>
     </tr>
   </tbody>
 </table>
 
 <h4 id="testsubject">TestSubject:</h4>
 <ul>
-  <li><strong>com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.DependencyMapper</strong></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencyMapper.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.DependencyMapper</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency</a></li>
 </ul>
 
@@ -106,7 +106,7 @@
 <ul>
   <li><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html">https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Dependency.html</a></li>
   <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/Dependency.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency</a></li>
-  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/api/mapper/DependencyMapper.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.mapper.DependencyMapper</a></li>
+  <li><a href="https://github.com/gregoranders/idea-gradle-dependencies/blob/main/src/main/java/com/github/gregoranders/idea/gradle/dependencies/gradle/tooling/model/mapper/DependencyMapper.java">com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper.DependencyMapper</a></li>
 </ul>
 
 <h2 id="features">Features</h2>
@@ -121,7 +121,7 @@
 <h1 id="should-map-a-gradle-dependency-of--group-dependencygroup-name-dependencyname-version-dependencyversion--to--group-dependencygroup-name-dependencyname-version-dependencyversion-">should map a gradle dependency of { group: ‘dependencyGroup’ name: ‘dependencyName’ version: ‘dependencyVersion’ } to { group: ‘dependencyGroup’ name: ‘dependencyName’ version: ‘dependencyVersion’ }</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.004 seconds</p>
+Time: 0.005 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a mocked gradle dependency</li>
@@ -194,7 +194,7 @@ Time: 0.004 seconds</p>
       <td>dependencyGroup</td>
       <td>dependencyName</td>
       <td>dependencyVersion</td>
-      <td>0.004 seconds</td>
+      <td>0.005 seconds</td>
       <td>(PASS)</td>
     </tr>
   </tbody>
@@ -285,7 +285,7 @@ Time: 0.001 seconds</p>
 <h1 id="should-map-a-gradle-dependency-of--group-dependencygroup-name-dependencyname-version-null--to--group-dependencygroup-name-dependencyname-version--">should map a gradle dependency of { group: ‘dependencyGroup’ name: ‘dependencyName’ version: ‘null’ } to { group: ‘dependencyGroup’ name: ‘dependencyName’ version: ‘’ }</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0</p>
+Time: 0.001 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a mocked gradle dependency</li>
@@ -358,7 +358,7 @@ Time: 0</p>
       <td>dependencyGroup</td>
       <td>dependencyName</td>
       <td> </td>
-      <td>0</td>
+      <td>0.001 seconds</td>
       <td>(PASS)</td>
     </tr>
   </tbody>
