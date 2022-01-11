@@ -79,6 +79,13 @@ jobs:
           name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
           path: build/reports
           retention-days: 2
+      - name: Upload reports as an artifact
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit-results
+          path: build/test-results
+          retention-days: 1
 
   publish-test-results:
     runs-on: ${{ matrix.os }}
@@ -95,9 +102,10 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: reports-jdk${{ matrix.java }}-${{ matrix.os }}
+          name: junit-results
           path: artifact
       - name: Publish Unit Test Results
-        run: |
-          ls -R
-          ls -R artifact
+        uses: EnricoMi/publish-unit-test-result-action/composite@v1
+        if: always()
+        with:
+          files: artifact/**/*.xml
