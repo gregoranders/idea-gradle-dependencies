@@ -4,7 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=1e69c09ddd8f388a048df497c3617b3643fb46a9">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=ec33cacbcb54054e04892b7ececfa4ef4783a355">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup theme-color -->
@@ -85,7 +85,7 @@
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0.022 seconds</td>
+      <td>0.029 seconds</td>
     </tr>
   </tbody>
 </table>
@@ -123,7 +123,7 @@
 <h1 id="should-return-temporary-init-script-path-with-replaced-plugin-path">should return temporary init script path with replaced plugin path</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.012 seconds</p>
+Time: 0.013 seconds</p>
 
 <ul>
   <li><strong>Given</strong> a valid init script</li>
@@ -275,7 +275,7 @@ Time: 0</p>
 <h1 id="should-throw-exception-when-not-existent-init-script-is-provided">should throw exception when not existent init script is provided</h1>
 
 <p>Result: <strong>PASS</strong>
-Time: 0.001 seconds</p>
+Time: 0.002 seconds</p>
 
 <ul>
   <li><strong>Given</strong> an invalid init script</li>
@@ -303,14 +303,7 @@ Time: 0.001 seconds</p>
   <li><strong>Then</strong> an exception should be thrown</li>
 </ul>
 
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NullPointerException</span> <span class="n">exception</span> <span class="o">=</span> <span class="n">thrown</span><span class="o">()</span>
-</code></pre></div></div>
-
-<ul>
-  <li><strong>And</strong> the message of the exception should be “Resource not found /test”</li>
-</ul>
-
-<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exception</span><span class="o">.</span><span class="na">getMessage</span><span class="o">()</span> <span class="o">==</span> <span class="s1">'Resource not found /test.gradle'</span>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">thrown</span><span class="o">(</span><span class="n">NullPointerException</span><span class="o">)</span>
 </code></pre></div></div>
 
 

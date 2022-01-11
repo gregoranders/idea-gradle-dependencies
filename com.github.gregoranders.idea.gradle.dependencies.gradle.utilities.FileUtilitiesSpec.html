@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/idea-gradle-dependencies/assets/css/style.css?v=ec33cacbcb54054e04892b7ececfa4ef4783a355">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/idea-gradle-dependencies/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec | JetBrains IntelliJ Gradle Dependencies Plugin</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec" />
+<meta name="author" content="Gregor Anders" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Specification run results" />
+<meta property="og:description" content="Specification run results" />
+<link rel="canonical" href="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec.html" />
+<meta property="og:url" content="https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec.html" />
+<meta property="og:site_name" content="JetBrains IntelliJ Gradle Dependencies Plugin" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec" />
+<script type="application/ld+json">
+{"@type":"WebPage","url":"https://gregoranders.github.io/idea-gradle-dependencies/com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec.html","author":{"@type":"Person","name":"Gregor Anders"},"headline":"com.github.gregoranders.idea.gradle.dependencies.gradle.utilities.FileUtilitiesSpec","description":"Specification run results","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/idea-gradle-dependencies/">
+          <h1>JetBrains IntelliJ Gradle Dependencies Plugin</h1>
+        </a>
+        <h2>Specification run results</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/gregoranders/idea-gradle-dependencies" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <table>
+  <thead>
+    <tr>
+      <th>Total Runs</th>
+      <th>Success Rate</th>
+      <th>Failures</th>
+      <th>Errors</th>
+      <th>Skipped</th>
+      <th>Total time (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>4</td>
+      <td>100.0%</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.021 seconds</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="features">Features</h2>
+<ul>
+  <li><a href="#removeleadingfile-should-return-/test/test.txt-when-invoked-with-/test/test.txt">removeLeadingFile should return /test/test.txt when invoked with /test/test.txt</a></li>
+  <li><a href="#removeleadingfile-should-return-/test/test.txt-when-invoked-with-file:/test/test.txt">removeLeadingFile should return /test/test.txt when invoked with file:/test/test.txt</a></li>
+  <li><a href="#removeleadingjar-should-return-/test/test.txt-when-invoked-with-/test/test.txt">removeLeadingJar should return /test/test.txt when invoked with /test/test.txt</a></li>
+  <li><a href="#removeleadingjar-should-return-/test/test.txt-when-invoked-with-jar:/test/test.txt!/">removeLeadingJar should return /test/test.txt when invoked with jar:/test/test.txt!/</a></li>
+</ul>
+
+<hr />
+
+<h1 id="removeleadingfile-should-return-testtesttxt-when-invoked-with-testtesttxt">removeLeadingFile should return /test/test.txt when invoked with /test/test.txt</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0.001 seconds</p>
+
+<ul>
+  <li><strong>Expect</strong></li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FileUtilities</span><span class="o">.</span><span class="na">removeLeadingFile</span><span class="o">(</span><span class="n">path</span><span class="o">)</span> <span class="o">==</span> <span class="n">expectedResult</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Where</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>path</th>
+      <th>expectedResult</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/test/test.txt</td>
+      <td>/test/test.txt</td>
+      <td>0.001 seconds</td>
+      <td>(PASS)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="removeleadingfile-should-return-testtesttxt-when-invoked-with-filetesttesttxt">removeLeadingFile should return /test/test.txt when invoked with file:/test/test.txt</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Expect</strong></li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FileUtilities</span><span class="o">.</span><span class="na">removeLeadingFile</span><span class="o">(</span><span class="n">path</span><span class="o">)</span> <span class="o">==</span> <span class="n">expectedResult</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Where</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>path</th>
+      <th>expectedResult</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>file:/test/test.txt</td>
+      <td>/test/test.txt</td>
+      <td>0</td>
+      <td>(PASS)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="removeleadingjar-should-return-testtesttxt-when-invoked-with-testtesttxt">removeLeadingJar should return /test/test.txt when invoked with /test/test.txt</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Expect</strong></li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FileUtilities</span><span class="o">.</span><span class="na">removeLeadingJar</span><span class="o">(</span><span class="n">path</span><span class="o">)</span> <span class="o">==</span> <span class="n">expectedResult</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Where</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>path</th>
+      <th>expectedResult</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>/test/test.txt</td>
+      <td>/test/test.txt</td>
+      <td>0</td>
+      <td>(PASS)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="removeleadingjar-should-return-testtesttxt-when-invoked-with-jartesttesttxt">removeLeadingJar should return /test/test.txt when invoked with jar:/test/test.txt!/</h1>
+
+<p>Result: <strong>PASS</strong>
+Time: 0</p>
+
+<ul>
+  <li><strong>Expect</strong></li>
+</ul>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FileUtilities</span><span class="o">.</span><span class="na">removeLeadingJar</span><span class="o">(</span><span class="n">path</span><span class="o">)</span> <span class="o">==</span> <span class="n">expectedResult</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Where</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>path</th>
+      <th>expectedResult</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>jar:/test/test.txt!/</td>
+      <td>/test/test.txt</td>
+      <td>0</td>
+      <td>(PASS)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+      </section>
+    </div>
+  </body>
+</html>
