@@ -21,38 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.ui;
+package io.github.gregoranders.idea.gradle.dependencies.ui;
 
-import com.github.gregoranders.idea.gradle.dependencies.gradle.GradleUtilities;
-import com.github.gregoranders.idea.gradle.dependencies.gradle.configuration.Configuration;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.openapi.wm.ToolWindowFactory;
 import org.immutables.value.Generated;
 import org.jetbrains.annotations.NotNull;
 
-import java.nio.file.Path;
-
 @Generated
-public final class DependenciesView extends SimpleToolWindowPanel {
+public final class DependenciesToolWindowFactory implements ToolWindowFactory {
 
-    private static final long serialVersionUID = -1;
+    @Override
+    public boolean isApplicable(@NotNull final Project project) {
+        return true;
+    }
 
-    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final transient Project currentProject;
+    @Override
+    public void createToolWindowContent(@NotNull final Project project, @NotNull final ToolWindow toolWindow) {
+        new DependenciesView(project);
+    }
 
-    public DependenciesView(final @NotNull Project project) {
-        super(true, true);
-        currentProject = project;
+    @Override
+    public void init(@NotNull final ToolWindow toolWindow) {
+        toolWindow.setTitle("Gradle Dependencies Check");
+    }
 
-        final String basePath = currentProject.getBasePath();
-
-        ApplicationManager.getApplication().invokeLater(() -> {
-            final GradleUtilities gradleUtilities = new GradleUtilities(new Configuration());
-            final com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project dependencies
-                = gradleUtilities.getDependencies(Path.of(basePath));
-
-            assert dependencies != null;
-        });
+    @Override
+    public boolean shouldBeAvailable(@NotNull final Project project) {
+        return true;
     }
 }

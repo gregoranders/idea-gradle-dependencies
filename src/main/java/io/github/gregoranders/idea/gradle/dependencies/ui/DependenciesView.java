@@ -21,41 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.ui;
+package io.github.gregoranders.idea.gradle.dependencies.ui;
 
-import com.intellij.openapi.actionSystem.AnAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
+import io.github.gregoranders.idea.gradle.dependencies.gradle.GradleUtilities;
+import io.github.gregoranders.idea.gradle.dependencies.gradle.configuration.Configuration;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import org.immutables.value.Generated;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import java.nio.file.Path;
 
 @Generated
-public final class DependenciesUpdateAction extends AnAction {
+public final class DependenciesView extends SimpleToolWindowPanel {
 
-    private static final String TOOL_WINDOW_ID = "Gradle Dependencies";
+    private static final long serialVersionUID = -1;
 
-    @Override
-    public void actionPerformed(@NotNull final AnActionEvent event) {
-        final Project project = event.getProject();
+    @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+    private final transient Project currentProject;
 
-        if (project != null) {
-            final ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
-            final ToolWindow toolWindow = getToolWindow(toolWindowManager);
-            if (toolWindow != null) {
-                showToolWindow(toolWindow);
-            }
-        }
-    }
+    public DependenciesView(final @NotNull Project project) {
+        super(true, true);
+        currentProject = project;
 
-    private void showToolWindow(final ToolWindow toolWindow) {
-        toolWindow.show(null);
-    }
+        final String basePath = currentProject.getBasePath();
 
-    @Nullable
-    private ToolWindow getToolWindow(final ToolWindowManager toolWindowManager) {
-        return toolWindowManager.getToolWindow(TOOL_WINDOW_ID);
+        ApplicationManager.getApplication().invokeLater(() -> {
+            final GradleUtilities gradleUtilities = new GradleUtilities(new Configuration());
+            final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project dependencies
+                = gradleUtilities.getDependencies(Path.of(basePath));
+
+            assert dependencies != null;
+        });
     }
 }

@@ -21,34 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.github.gregoranders.idea.gradle.dependencies.ui;
+package io.github.gregoranders.idea.gradle.dependencies.ui;
 
+import com.intellij.openapi.actionSystem.AnAction;
+import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
-import com.intellij.openapi.wm.ToolWindowFactory;
+import com.intellij.openapi.wm.ToolWindowManager;
 import org.immutables.value.Generated;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 @Generated
-public final class DependenciesToolWindowFactory implements ToolWindowFactory {
+public final class DependenciesUpdateAction extends AnAction {
+
+    private static final String TOOL_WINDOW_ID = "Gradle Dependencies";
 
     @Override
-    public boolean isApplicable(@NotNull final Project project) {
-        return true;
+    public void actionPerformed(@NotNull final AnActionEvent event) {
+        final Project project = event.getProject();
+
+        if (project != null) {
+            final ToolWindowManager toolWindowManager = ToolWindowManager.getInstance(project);
+            final ToolWindow toolWindow = getToolWindow(toolWindowManager);
+            if (toolWindow != null) {
+                showToolWindow(toolWindow);
+            }
+        }
     }
 
-    @Override
-    public void createToolWindowContent(@NotNull final Project project, @NotNull final ToolWindow toolWindow) {
-        new DependenciesView(project);
+    private void showToolWindow(final ToolWindow toolWindow) {
+        toolWindow.show(null);
     }
 
-    @Override
-    public void init(@NotNull final ToolWindow toolWindow) {
-        toolWindow.setTitle("Gradle Dependencies Check");
-    }
-
-    @Override
-    public boolean shouldBeAvailable(@NotNull final Project project) {
-        return true;
+    @Nullable
+    private ToolWindow getToolWindow(final ToolWindowManager toolWindowManager) {
+        return toolWindowManager.getToolWindow(TOOL_WINDOW_ID);
     }
 }

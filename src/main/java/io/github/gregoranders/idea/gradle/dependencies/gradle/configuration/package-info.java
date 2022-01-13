@@ -21,9 +21,4 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-@Value.Style(
-    jdkOnly = true
-)
-package com.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api;
-
-import org.immutables.value.Value;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.configuration;
