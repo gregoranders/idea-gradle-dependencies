@@ -21,7 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.utilities
+
+import spock.lang.Specification
+import spock.lang.Unroll
+
+class FileUtilitiesSpec extends Specification {
+
+    @Unroll
+    def 'removeLeadingFile should return #expectedResult when invoked with #path'() {
+        expect:
+            FileUtilities.removeLeadingFile(path) == expectedResult
+        where:
+            path                  || expectedResult
+            "/test/test.txt"      || "/test/test.txt"
+            "file:/test/test.txt" || "/test/test.txt"
+    }
+
+    @Unroll
+    def 'removeLeadingJar should return #expectedResult when invoked with #path'() {
+        expect:
+            FileUtilities.removeLeadingJar(path) == expectedResult
+
+        where:
+            path                   || expectedResult
+            "/test/test.txt"       || "/test/test.txt"
+            "jar:/test/test.txt!/" || "/test/test.txt"
+    }
 }

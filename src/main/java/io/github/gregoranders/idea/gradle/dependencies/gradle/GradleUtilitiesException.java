@@ -21,7 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle;
+
+public final class GradleUtilitiesException extends RuntimeException {
+
+    private static final long serialVersionUID = -1L;
+
+    public GradleUtilitiesException(final Exception exception) {
+        super(exception);
+    }
 }

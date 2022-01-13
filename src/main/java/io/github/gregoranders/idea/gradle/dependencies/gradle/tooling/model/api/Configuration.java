@@ -21,7 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api;
+
+import org.immutables.value.Value;
+
+import java.io.Serializable;
+import java.util.Set;
+
+@Value.Immutable
+public interface Configuration extends Serializable {
+    @Value.Parameter(order = 1)
+    String name();
+
+    @Value.Parameter(order = 2)
+    Set<Dependency> dependencies();
 }

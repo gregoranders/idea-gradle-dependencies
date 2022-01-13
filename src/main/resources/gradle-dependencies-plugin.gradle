@@ -7,5 +7,5 @@ initscript {
 }
 
 allprojects {
-  apply plugin: %%GRADLE_DEPENDENCIES_PLUGIN%%
+  apply plugin: '%%GRADLE_DEPENDENCIES_PLUGIN%%'
 }

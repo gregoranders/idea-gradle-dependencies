@@ -21,7 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;
+
+import io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency;
+import org.gradle.api.artifacts.DependencySet;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public final class DependencySetMapper
+    extends BasicMapper<DependencySet, Set<Dependency>> {
+
+    private final DependencyMapper dependencyMapper;
+
+    public DependencySetMapper(final DependencyMapper mapper) {
+        super();
+        dependencyMapper = mapper;
+    }
+
+    @SuppressWarnings("PMD.LawOfDemeter")
+    @Override
+    public Set<Dependency> map(final DependencySet dependencies) {
+        return dependencies
+            .stream()
+            .map(dependencyMapper::map)
+            .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
 }

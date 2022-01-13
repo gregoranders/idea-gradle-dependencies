@@ -21,7 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.model.api;
+
+import org.immutables.value.Value;
+
+@Value.Immutable
+public interface Dependency {
+
+    @Value.Parameter(order = 1)
+    String group();
+
+    @Value.Parameter(order = 2)
+    String name();
+
+    @Value.Parameter(order = 3)
+    String version();
+
+    @Value.Parameter(order = 4)
+    boolean isSubProject();
 }

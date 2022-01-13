@@ -21,7 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.configuration;
+
+public final class Configuration {
+
+    public static final String DEFAULT_INIT_SCRIPT = "/gradle-dependencies-plugin.gradle";
+
+    public static final String PLUGIN_NAME = "io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.DependenciesPlugin";
+
+    public String getInitScriptPath() {
+        return DEFAULT_INIT_SCRIPT;
+    }
+
+    public String getPluginName() {
+        return PLUGIN_NAME;
+    }
 }

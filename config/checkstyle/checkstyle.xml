@@ -152,7 +152,7 @@
   <module name="Header">
     <property
       name="headerFile"
-      value="${checkstyle.header.file}"/>
+      value="${config_loc}/header.txt"/>
     <property
       name="fileExtensions"
       value="java"/>
@@ -160,6 +160,6 @@
   <module name="SuppressionFilter">
     <property
       name="file"
-      value="${checkstyle.suppressions.file}"/>
+      value="${config_loc}/suppressions.xml"/>
   </module>
 </module>

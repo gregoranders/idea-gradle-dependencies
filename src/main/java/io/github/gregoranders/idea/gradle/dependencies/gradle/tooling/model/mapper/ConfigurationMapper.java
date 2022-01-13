@@ -21,7 +21,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper;
+
+import io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.ImmutableConfiguration;
+import org.gradle.api.artifacts.Configuration;
+
+public final class ConfigurationMapper
+    extends BasicMapper<Configuration, io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration> {
+
+    private final DependencySetMapper dependencySetMapper;
+
+    public ConfigurationMapper(final DependencySetMapper mapper) {
+        super();
+        dependencySetMapper = mapper;
+    }
+
+    @Override
+    public io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration map(final Configuration configuration) {
+        return ImmutableConfiguration.of(
+            configuration.getName(),
+            dependencySetMapper.map(configuration.getDependencies())
+        );
+    }
 }

@@ -1,7 +1,16 @@
 pluginManagement {
   repositories {
     mavenCentral()
+    mavenLocal()
     gradlePluginPortal()
+    maven {
+      name = 'GitHubPackages'
+      url = 'https://maven.pkg.github.com/gregoranders/gradle-project-configuration'
+      credentials {
+        username = System.getenv('GITHUB_ACTOR')
+        password = System.getenv('GITHUB_TOKEN')
+      }
+    }
   }
 }
 

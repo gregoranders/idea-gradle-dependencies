@@ -21,7 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-module io.github.gregoranders.idea.gradle.dependencies {
-    requires gradle.api;
-    requires org.immutables.value.annotations;
+package io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.mapper
+
+
+import io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency
+import io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project
+import spock.lang.Specification
+
+class MapperSpecification extends Specification {
+
+    void verifyProject(Project project, String group, String name, String description, String version, String path) {
+        verifyAll(project) {
+            it.group() == group
+            it.name() == name
+            it.description() == description
+            it.version() == version
+            it.path() == path
+        }
+    }
+
+    void verifyDependency(Dependency dependency, String group, String name, String version) {
+        verifyAll(dependency) {
+            it.group() == group
+            it.name() == name
+            it.version() == version
+        }
+    }
 }
