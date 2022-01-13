@@ -23,21 +23,28 @@
  */
 package io.github.gregoranders.idea.gradle.dependencies.ui;
 
-import com.intellij.icons.AllIcons;
 import com.intellij.ide.actions.RefreshAction;
 import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.startup.StartupManager;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
 import com.intellij.openapi.wm.ToolWindow;
+import com.intellij.ui.components.JBScrollPane;
+import com.intellij.ui.content.Content;
+import com.intellij.ui.content.ContentFactory;
+import com.intellij.ui.treeStructure.Tree;
 import io.github.gregoranders.idea.gradle.dependencies.gradle.GradleUtilities;
 import io.github.gregoranders.idea.gradle.dependencies.gradle.configuration.Configuration;
+import io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Dependency;
 import org.immutables.value.Generated;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Generated
 public final class DependenciesView extends SimpleToolWindowPanel {
@@ -47,32 +54,108 @@ public final class DependenciesView extends SimpleToolWindowPanel {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final transient Project currentProject;
 
-    private final DefaultActionGroup actionGroup;
+    private final AtomicBoolean busy = new AtomicBoolean(false);
 
-    private final RefreshAction refreshAction;
+    private final transient DefaultActionGroup actionGroup;
 
-    private final ActionToolbar actionToolbar;
+    private final transient RefreshAction refreshAction;
+
+    private final transient ActionToolbar actionToolbar;
+
+    private final DefaultMutableTreeNode rootNode;
+
+    private final Tree tree;
 
     public DependenciesView(final @NotNull Project project, final ToolWindow toolWindow) {
         super(true, true);
         currentProject = project;
         final ActionManager actionManager = ActionManager.getInstance();
         actionGroup = new DefaultActionGroup("ACTION_GROUP", false);
-        refreshAction = new RefreshAction("Refresh", "Refresh all dependencies", AllIcons.Actions.Refresh);
+        refreshAction = new DependenciesRefreshAction(this);
         actionGroup.add(refreshAction);
         actionToolbar = actionManager.createActionToolbar("ACTION_TOOLBAR", actionGroup, true);
         setToolbar(actionToolbar.getComponent());
+
+        Content content = ContentFactory.SERVICE.getInstance().createContent(this, "", false);
+        toolWindow.getContentManager().addContent(content);
+
+        rootNode = new DefaultMutableTreeNode();
+        tree = new Tree(rootNode);
+        tree.setCellRenderer(new ModelCellRenderer());
+        setContent(new JBScrollPane(tree));
+
+        StartupManager.getInstance(project).runWhenProjectIsInitialized(this::refresh);
     }
 
+    @SuppressWarnings("PMD.LawOfDemeter")
     public void refresh() {
         final String basePath = currentProject.getBasePath();
 
-        ApplicationManager.getApplication().invokeLater(() -> {
-            final GradleUtilities gradleUtilities = new GradleUtilities(new Configuration());
-            final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project dependencies
-                = gradleUtilities.getDependencies(Path.of(basePath));
+        busy.set(true);
+        actionToolbar.updateActionsImmediately();
+        updateUI();
 
-            assert dependencies != null;
+        ApplicationManager.getApplication().invokeLater(() -> {
+            if (basePath != null) {
+
+                try {
+                    final GradleUtilities gradleUtilities = new GradleUtilities(new Configuration());
+                    final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project project
+                        = gradleUtilities.getDependencies(Path.of(basePath));
+                    if (project != null) {
+                        updateView(project);
+                    }
+                } catch (Exception e) {
+                    // TODO
+                } finally {
+                    busy.set(false);
+                }
+            }
         });
+    }
+
+    private void updateView(final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project project) {
+        rootNode.removeAllChildren();
+        addProject(rootNode, project);
+    }
+
+    private void addProject(final DefaultMutableTreeNode node,
+                            final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Project project) {
+        node.setUserObject(project);
+
+        if (project.subProjects().size() > 0) {
+            project.subProjects().forEach(subProject -> {
+                final DefaultMutableTreeNode childNode = new DefaultMutableTreeNode();
+                addProject(childNode, subProject);
+                node.add(childNode);
+            });
+        }
+        if (project.configurations().size() > 0) {
+            project.configurations().forEach(configuration -> {
+                if (configuration.dependencies().size() > 0) {
+                    final DefaultMutableTreeNode childNode = new DefaultMutableTreeNode();
+                    addConfiguration(childNode, configuration);
+                    node.add(childNode);
+                }
+            });
+        }
+    }
+
+    private void addConfiguration(final DefaultMutableTreeNode node,
+                                  final io.github.gregoranders.idea.gradle.dependencies.gradle.tooling.model.api.Configuration configuration) {
+        node.setUserObject(configuration);
+        configuration.dependencies().forEach(dependency -> {
+            final DefaultMutableTreeNode childNode = new DefaultMutableTreeNode();
+            addDependency(childNode, dependency);
+            node.add(childNode);
+        });
+    }
+
+    private void addDependency(final DefaultMutableTreeNode node, final Dependency dependency) {
+        node.setUserObject(dependency);
+    }
+
+    public boolean isBusy() {
+        return busy.get();
     }
 }

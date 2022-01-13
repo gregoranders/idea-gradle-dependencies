@@ -47,7 +47,7 @@
       <action id="GradleDependenciesUpdateAction"
               description="Checks dependencies of a Gradle project for updates."
               icon="/icons/toolWindow.svg"
-              class="io.github.gregoranders.idea.gradle.dependencies.ui.DependenciesUpdateAction"
+              class="io.github.gregoranders.idea.gradle.dependencies.ui.DependenciesViewAction"
               text="Checks Dependencies For Updates">
         <add-to-group group-id="AnalyzeActions" anchor="last"/>
       </action>

@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Generated
-public final class DependenciesUpdateAction extends AnAction {
+public final class DependenciesViewAction extends AnAction {
 
     private static final String TOOL_WINDOW_ID = "Gradle Dependencies";
 
