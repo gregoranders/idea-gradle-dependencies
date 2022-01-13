@@ -6,6 +6,9 @@ on:
     branches: [ main, development ]
   schedule:
     - cron: '43 7 * * 0'
+env:
+  PLUGIN_GITHUB_ACTOR: ${{ secrets.PLUGIN_GITHUB_ACTOR }}
+  PLUGIN_GITHUB_TOKEN: ${{ secrets.PLUGIN_GITHUB_TOKEN }}
 jobs:
   analyze:
     name: Analyze
