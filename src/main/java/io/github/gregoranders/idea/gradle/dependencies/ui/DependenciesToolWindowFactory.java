@@ -33,22 +33,7 @@ import org.jetbrains.annotations.NotNull;
 public final class DependenciesToolWindowFactory implements ToolWindowFactory {
 
     @Override
-    public boolean isApplicable(@NotNull final Project project) {
-        return true;
-    }
-
-    @Override
     public void createToolWindowContent(@NotNull final Project project, @NotNull final ToolWindow toolWindow) {
-        new DependenciesView(project);
-    }
-
-    @Override
-    public void init(@NotNull final ToolWindow toolWindow) {
-        toolWindow.setTitle("Gradle Dependencies Check");
-    }
-
-    @Override
-    public boolean shouldBeAvailable(@NotNull final Project project) {
-        return true;
+        new DependenciesView(project, toolWindow);
     }
 }

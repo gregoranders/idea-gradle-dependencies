@@ -23,11 +23,17 @@
  */
 package io.github.gregoranders.idea.gradle.dependencies.ui;
 
-import io.github.gregoranders.idea.gradle.dependencies.gradle.GradleUtilities;
-import io.github.gregoranders.idea.gradle.dependencies.gradle.configuration.Configuration;
+import com.intellij.icons.AllIcons;
+import com.intellij.ide.actions.RefreshAction;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionToolbar;
+import com.intellij.openapi.actionSystem.DefaultActionGroup;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.SimpleToolWindowPanel;
+import com.intellij.openapi.wm.ToolWindow;
+import io.github.gregoranders.idea.gradle.dependencies.gradle.GradleUtilities;
+import io.github.gregoranders.idea.gradle.dependencies.gradle.configuration.Configuration;
 import org.immutables.value.Generated;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,10 +47,24 @@ public final class DependenciesView extends SimpleToolWindowPanel {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
     private final transient Project currentProject;
 
-    public DependenciesView(final @NotNull Project project) {
+    private final DefaultActionGroup actionGroup;
+
+    private final RefreshAction refreshAction;
+
+    private final ActionToolbar actionToolbar;
+
+    public DependenciesView(final @NotNull Project project, final ToolWindow toolWindow) {
         super(true, true);
         currentProject = project;
+        final ActionManager actionManager = ActionManager.getInstance();
+        actionGroup = new DefaultActionGroup("ACTION_GROUP", false);
+        refreshAction = new RefreshAction("Refresh", "Refresh all dependencies", AllIcons.Actions.Refresh);
+        actionGroup.add(refreshAction);
+        actionToolbar = actionManager.createActionToolbar("ACTION_TOOLBAR", actionGroup, true);
+        setToolbar(actionToolbar.getComponent());
+    }
 
+    public void refresh() {
         final String basePath = currentProject.getBasePath();
 
         ApplicationManager.getApplication().invokeLater(() -> {

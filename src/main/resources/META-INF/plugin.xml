@@ -38,7 +38,7 @@
       <toolWindow id="Gradle Dependencies"
                   icon="/icons/toolWindow.svg"
                   anchor="right"
-                  canCloseContents="true"
+                  canCloseContents="false"
                   doNotActivateOnStart="true"
                   factoryClass="io.github.gregoranders.idea.gradle.dependencies.ui.DependenciesToolWindowFactory"/>
     </extensions>
