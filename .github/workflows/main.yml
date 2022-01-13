@@ -9,6 +9,8 @@ env:
   GITHUB_HEAD_REF: ${{ github.head_ref }}
   GITHUB_BASE_REF: ${{ github.base_ref }}
   GITHUB_COMMIT: ${{ github.sha }}
+  PLUGIN_GITHUB_ACTOR: ${{ secrets.PLUGIN_GITHUB_ACTOR }}
+  PLUGIN_GITHUB_TOKEN: ${{ secrets.PLUGIN_GITHUB_TOKEN }}
 jobs:
   build:
     runs-on: ${{ matrix.os }}
