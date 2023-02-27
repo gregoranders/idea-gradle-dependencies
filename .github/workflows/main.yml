@@ -37,13 +37,13 @@ jobs:
         run: java --version
       - name: Cache SonarCloud packages
         if: matrix.os == 'ubuntu-latest'
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.2.6
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache Gradle packages
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.2.6
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
@@ -90,7 +90,7 @@ jobs:
           retention-days: 1
       - name: Get cached gems
         if: matrix.os == 'ubuntu-latest'
-        uses: actions/cache@v2.1.7
+        uses: actions/cache@v3.2.6
         with:
           path: docs/_gh-pages
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
